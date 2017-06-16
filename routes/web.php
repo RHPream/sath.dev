@@ -36,3 +36,7 @@ Route::prefix('admin')->group(function() {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//Exam Route
+Route::get('/exam','Users\ExamController@index');
+Route::post('/exam-submit','Users\ExamController@judge')->name('submit-ans');

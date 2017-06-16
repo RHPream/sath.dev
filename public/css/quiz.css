@@ -1,0 +1,613 @@
+
+.quiz {
+    background: #f9f9f9;
+    margin: 15px -9px;
+    padding: 15px 17px;
+}
+.quiz ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: block;
+    -webkit-box-shadow: 0 1px 4px #CFCFCF;
+    -moz-box-shadow: 0 1px 4px #CFCFCF;
+    -o-box-shadow: 0 1px 4px #CFCFCF;
+    box-shadow: 0 1px 4px #CFCFCF;
+    height: 290px;
+    width: 100%;
+    position: relative;
+}
+.content .quiz li {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0;
+    margin: 0;
+    background: #FFF;
+    border: 1px solid #FFF;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    list-style-type: none;
+    display: none;
+}
+.content .quiz .active {
+    opacity: 1;
+    z-index: 1;
+    display: block;
+}
+.quiz-image {
+    float: left;
+    background: #FFF;
+    width: 180px;
+    height: 260px;
+    padding: 20px 15px;
+    position: relative;
+}
+.content .quiz-image img {
+    max-width: 180px;
+    max-height: 260px;
+    display: block;
+}
+.quiz-question {
+    position: relative;
+    float: left;
+    width: calc(100% - 210px);
+}
+.quiz p {
+    margin: 0 30px 0 15px;
+    font-size: 16px;
+    line-height: 18px;
+    color: #414042;
+}
+p.quiz-title {
+    color: #414042;
+    text-transform: uppercase;
+    font-size: 22px;
+    line-height: 24px;
+    padding: 30px 0 0;
+    margin: 0 30px 5px 15px;
+}
+.quiz-title span {
+    color: #e72200;
+}
+.content .quiz-faq {
+    position: absolute;
+    top: 221px;
+    left: 0;
+    margin: 0;
+    width: 90%;
+    left: 15px;
+    border-top: 1px solid #414042;
+    padding-top: 10px;
+}
+.content .quiz-faq a {
+    color: #414042;
+    text-decoration: none;
+    margin-bottom: 5px;
+    padding-right: 15px;
+}
+.quiz-buttons {
+    border-top: 1px solid #414042;
+    position: absolute;
+    top: 165px;
+    left: 15px;
+    padding: 10px 0 0;
+    width: 90%;
+}
+.content .quiz-buttons p {
+    margin: 0;
+    padding: 10px 0 0;
+    clear: both;
+}
+.content .quiz-buttons a {
+    display: block;
+    float: left;
+    color: #FFF !important;
+    background: #e72200;
+    margin-right: 10px;
+    text-transform: uppercase;
+    font-size: 16px;
+    line-height: 1em;
+    padding: 10px 20px;
+    min-width: 30px;
+    text-align: center;
+    border-radius: 5px;
+}
+.content .quiz-buttons a:hover,
+.content .quiz-buttons a:focus {
+    background: transparent;
+    color: #e42a20 !important;
+    border-color: #e42a20;
+    border: 2px solid #e42a20;
+    border-radius: 5px;
+    padding: 8px 18px;
+    text-decoration: none;
+}
+
+.content .quiz-buttons .quiz-back {
+    float: right;
+    margin: 0;
+    background: #414042;
+    color: #FFF;
+}
+
+.content .quiz-buttons .quiz-back:hover,
+.content .quiz-buttons .quiz-back:focus {
+    background: transparent;
+    color: #414042 !important;
+    border: 2px solid #414042;
+}
+
+.banner_container .quiz {
+    margin: 0;
+    padding: 0;
+}
+.content .banner_container .quiz li {
+    background: #FFF;
+}
+.banner_container .quiz ul {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    -o-box-shadow: none;
+    box-shadow: none;
+    height: 360px;
+}
+.banner_container .quiz-image {
+    width: 210px;
+    height: 360px;
+}
+.banner_container .quiz-question {
+    margin-left: 230px;
+}
+.banner_container .quiz-buttons {
+    width: 365px;
+    top: 220px;
+    border-top: 2px solid #414042;
+    padding-top: 14px;
+}
+.banner_container .quiz p {
+    font-size: 18px;
+    line-height: 22px;
+    color: #414042;
+}
+.banner_container p.quiz-title {
+    padding-top: 38px;
+    font-size: 40px;
+    line-height: 40px;
+    color: #414042;
+    margin: 0 15px 5px 10px;
+    letter-spacing: -0.02em;
+}
+.banner_container p.quiz-title span {
+    color: #e72200;
+}
+.content .banner_container .quiz-image img {
+    margin: 34px 0 0 11px;
+}
+.content .banner_container .quiz-faq {
+    width: 365px;
+    top: 289px;
+    border-top: 2px solid #414042;
+}
+.content .banner_container .quiz-faq a {
+    color: #414042;
+    padding-right: 18px;
+}
+.content .banner_container #qz-10 .quiz-faq a {
+    clear: none;
+    float: none;
+}
+.content .banner_container .quiz-buttons a {
+    font-size: 20px;
+    background: #e72200;
+}
+.content .banner_container .quiz-buttons a:hover,
+.content .banner_container .quiz-buttons a:focus {
+    background: #414042;
+    color: #FFF;
+}
+.content .banner_container .quiz-buttons .quiz-back {
+    background: #414042;
+    color: #FFF;
+}
+.content .banner_container .quiz-buttons .quiz-back:hover,
+.content .banner_container .quiz-buttons .quiz-back:focus {
+    background: #e72200;
+}
+
+/* New Donation Calculator */
+
+#content form#donor-calculator-form {
+    margin:10px;
+    padding:0 0 10px 0;
+    width:535px;
+    background:#fff;
+}
+#donor-calculator-result {
+    margin:10px 0 0 0;
+}
+#donor-calculator-result .container span {
+    float:left;
+    line-height:34px;
+    margin-left:80px;
+}
+#donor-calculator-result .button {
+    background-color: #000;
+    border: none;
+    line-height: 34px;
+    font-size: 1.333333333333333em;
+    font-weight: normal;
+    color: white;
+    text-transform: uppercase;
+    cursor: pointer;
+    overflow: visible;
+    border-radius: 0;
+    padding:0 10px 0 30px;
+    float:left;
+}
+#donor-calculator-result .button:hover,
+#donor-calculator-result .button.next:hover,
+#donor-calculator-result .button:focus,
+#donor-calculator-result .button.next:focus {
+    background-color:#dc291e;
+}
+#donor-calculator-result .button.next {
+    float:right;
+    padding:0 30px 0 10px;
+}
+#donor-calculator-result .label  {
+    background:#f2f2f2;
+    border-top:1px solid #cbcbcb;
+    padding:10px;
+    font-weight:bold;
+}
+#donor-calculator-result .label p {
+    margin:5px 0;
+}
+#donor-calculator-result .result {
+    background:#dc291e;
+    padding:10px;
+    display:block;
+    height:25px;
+    margin-bottom:10px;
+}
+#donor-calculator-result .result .digits {
+    background:#fddfcf;
+    width:34px;
+    height:25px;
+    float:left;
+    margin-right:10px;
+
+}
+
+#donor-calculator-result .result .digits .digit
+{
+    display: block;
+    width:17px;
+    height:25px;
+    text-indent: -10000px;
+    float: left;
+}
+
+#donor-calculator-result .result .month {
+    height:25px;
+    width:111px;
+    float:left;
+    text-indent: -10000px;
+}
+/*#donor-calculator-form .form-select {
+	float:right;
+	margin-right:5px;
+	width:220px;
+}*/
+
+#donor-calculator-form label {
+    float: none;
+    width: auto;
+    margin: 20px 0;
+}
+
+#donor-calculator-form .form-item.form-type-select.form-item-last-date-day,
+#donor-calculator-form .form-item.form-type-select.form-item-last-date-month,
+#donor-calculator-form .form-item.form-type-select.form-item-last-date-year {
+    margin: 0 15px 15px 0;
+    float: left;
+    width: 220px;
+    min-width: inherit;
+    clear: none;
+}
+
+@media (max-width: 1024px){
+    #donor-calculator-form .form-item.form-type-select.form-item-last-date-day,
+    #donor-calculator-form .form-item.form-type-select.form-item-last-date-month,
+    #donor-calculator-form .form-item.form-type-select.form-item-last-date-year {
+        margin: 0 0 15px;
+        float: none;
+        width: auto;
+    }
+}
+
+#content #donor-calculator-form .form-item .form-item {
+    padding:0 5px 0 0;
+}
+#content #content-inner #donor-calculator-form .form-item label {
+    padding:6px;
+    text-align:left;
+    width:auto;
+    font-weight:bold;
+}
+#donor-calculator-form #edit-type-wrapper  {
+    background:#dc291e;
+    padding:10px;
+    width:520px;
+}
+#donor-calculator-form #edit-type-wrapper label {
+    color:#fff;
+}
+#content #donor-calculator-form  #edit-submit {
+    position:relative;
+    margin:10px 0 -5px 0;
+}
+#donor-calculator-form #edit-last-date-wrapper {
+    background:#f2f2f2;
+    border-bottom:1px solid #cbcbcb;
+    padding:10px;
+    width:520px;
+}
+#donor-calculator-form #edit-last-date-wrapper .container-inline {
+    float:right;
+}
+#donor-calculator-form #edit-last-date-wrapper .form-select {
+    width:70px;
+    margin:0;
+}
+
+
+#donation-calc form {
+    position: relative;
+    width: 424px;
+    height: 78px;
+    top: 0;
+    left: 0;
+    margin: 10px 0 0;
+    padding: 0;
+}
+
+#donation-calc form p {
+    margin: 5px 0 0 12px;
+    float: left;
+}
+
+#donation-calc label {
+    display: block;
+    float: left;
+    width: 120px;
+    clear: left;
+    padding: 11px 0 11px 12px;
+    margin: 0;
+    font-size: 12px;
+}
+
+#donation-calc #date-display {
+    clear: left;
+    font-size: 2.4em;
+    line-height: 1em;
+    font-weight: bold;
+    width: 253px;
+    height: 36px;
+    margin: 0 0 0 12px;
+    padding: 4px 0 0 0;
+    position: relative;
+}
+
+#donation-calc .day {
+    width: 51px;
+    height: 29px;
+    position: absolute;
+    top: 9px;
+    left: 1px;
+    text-align: center;
+    display: block;
+}
+
+#donation-calc .month {
+    width: 191px;
+    height: 29px;
+    position: absolute;
+    top: 9px;
+    right: 1px;
+    text-align: center;
+    display: block;
+}
+
+#donation-calc #type {
+    float: left;
+    margin: 10px 0 0;
+    min-width: 150px;
+    background: #FFF;
+    border: 1px solid #888;
+    padding: 0;
+    font-size: 12px;
+    line-height: 19px;
+    height: 19px;
+}
+
+#donation-calc form > div > span {
+    width: 217px;
+    height: 22px;
+    float: left;
+    display: block;
+    margin: 0;
+    position: relative;
+    top: 6px;
+}
+
+*:first-child+html #donation-calc form > div > span {
+    top: 15px;
+}
+
+#donation-calc #date {
+    width: 182px;
+    height: 17px;
+    margin: 4px 0 0 23px;
+    padding: 0;
+    border: 0;
+}
+
+#donation-calc #submit,
+#donation-calc #back {
+    position: absolute;
+    bottom: 9px;
+    right: 9px;
+    width: 53px;
+    height: 24px;
+    margin: 0;
+    padding: 0 0 0 1px;
+    cursor: pointer;
+    border: 0;
+    color: #f6f6f6;
+    font-size: 1px;
+    text-align: left;
+}
+
+
+#donation-calc #date-wrap {
+    position: relative;
+}
+
+#donation-calc #date-click-zone {
+    position: absolute;
+    width: 218px;
+    height: 23px;
+    display: block;
+    cursor: pointer;
+}
+
+#donation-calc #datepicker-input {
+    background: #FFF;
+    border: 1px solid #FFF;
+    position: relative;
+    left: 25px;
+    top: 2px;
+    cursor: pointer;
+    color: #7B7B7B;
+    font-weight: bold;
+    text-align: center;
+    width: 170px;
+    font-size: 14px;
+    font-family: Verdana, Arial, sans-serif;
+}
+
+#donation-calc #flash-calc{
+    padding-left: 10px;
+    padding-top: 35px;
+    position: relative;
+}
+
+.page-who-can-give-when-can-i #ui-datepicker-div {
+    margin: -25px 0 0 -30px;
+    border: 1px solid #c0c0c0;
+    padding: 6px 4px 4px;
+}
+
+.page-who-can-give-when-can-i #ui-datepicker-div,
+.page-who-can-give-when-can-i #ui-datepicker-div table,
+.page-who-can-give-when-can-i .ui-datepicker-div,
+.page-who-can-give-when-can-i .ui-datepicker-div table,
+.page-who-can-give-when-can-i .ui-datepicker-inline,
+.page-who-can-give-when-can-i .ui-datepicker-inline table {
+    font-size: 14px !important;
+}
+
+.page-who-can-give-when-can-i .ui-datepicker-header {
+    text-align: center;
+    font-weight: bold;
+    color: #7b7b7b;
+    padding: 0 0 10px;
+    margin: 0;
+    width: 164px;
+    clear: both;
+    position: absolute;
+    top: 4px;
+    left: 30px;
+}
+
+.page-who-can-give-when-can-i .ui-datepicker-header select {
+    position: static;
+}
+
+.page-who-can-give-when-can-i .ui-datepicker-prev {
+    background: none transparent;
+    position: static;
+}
+
+.page-who-can-give-when-can-i .ui-datepicker-prev a {
+    background: none transparent;
+    border: none;
+    float: left;
+}
+
+.page-who-can-give-when-can-i .ui-datepicker-next {
+    background: none transparent;
+    position: static;
+}
+
+.page-who-can-give-when-can-i .ui-datepicker-next a {
+    background: none transparent;
+    border: none;
+    float: right;
+}
+
+.page-who-can-give-when-can-i .ui-datepicker-links {
+    overflow: hidden;
+    margin-bottom: 5px;
+}
+
+.page-who-can-give-when-can-i .ui-datepicker-next label,
+.page-who-can-give-when-can-i .ui-datepicker-prev label  {
+    display: none;
+}
+
+@media (max-width: 1024px){
+    .quiz-image {
+
+    }
+}
+
+@media (max-width: 767px){
+    .quiz ul {
+        height: 410px;
+    }
+
+    .quiz-image {
+        display: none;
+    }
+
+    .quiz-question {
+        width: auto;
+        float: none;
+    }
+
+    .quiz-buttons {
+        position: static;
+        top: auto;
+        left: auto;
+        margin: 0 0 0 15px;
+    }
+
+    .content .quiz-buttons a {
+        float: none;
+        margin: 5px 0;
+    }
+
+    .content .quiz-buttons .quiz-back {
+        float: none;
+        margin: 0 0 20px;
+    }
+
+    .content .quiz-faq {
+        margin: 10px 0 10px 15px;
+        position: static;
+    }
+}
