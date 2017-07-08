@@ -15,6 +15,7 @@ class CreateHomePagesTable extends Migration
     {
         Schema::create('home_pages', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('video');
             $table->timestamps();
         });
     }

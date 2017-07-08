@@ -15,6 +15,9 @@ class CreateSidebarsTable extends Migration
     {
         Schema::create('sidebars', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('ceo_image')->default('ceo-avatar.png');
+            $table->text('ceo_description');
+            $table->string('side_video');
             $table->timestamps();
         });
     }
