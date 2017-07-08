@@ -1,0 +1,229 @@
+body
+{
+    background-color: #ffffff;
+}
+.navbar{
+    background-color: #000043;
+    color: #ffffff;
+}
+.navbar-toggle
+{
+    background-color: #ffffff;
+}
+.navbar-toggle .icon-bar
+{
+    background-color: #000043;
+}
+.nav>li a{
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 18px;
+    font-family: 'Inconsolata', monospace;
+}
+.auth-icon
+{
+    margin-right: 10px;
+    color: #FF961F;
+}
+.slider
+{
+    min-height: 350px;
+    width: 100%;
+    margin-bottom: 30px;
+}
+.circular
+{
+    width: 100%;
+    margin-bottom: 30px;
+    padding: 10px 5px;
+}
+.ceo-image>img
+{
+    max-height: 200px;
+    width: 200px;
+    margin-left: 25%;
+    margin-top: 10px;
+}
+.about-ceo>h2,.message-from-ceo>h2
+{
+    background-color: #000043;
+    color: #ffffff;
+    padding: 10px;
+}
+.intro-video
+{
+    height: 200px;
+    width: 100%;
+    margin-top: 10px;
+}
+.video-overview
+{
+    height: 40px;
+    background-color: rgba(0,0,0,.5);
+}
+.relative
+{
+    position: relative;
+}
+.logo-image
+{
+    position: absolute;
+    top: -45px;
+    left: 0;
+    height: 100px;
+    z-index: 9999;
+}
+.video-description
+{
+    color: #ffffff;
+    font-size: 18px;
+    padding: 5px;
+}
+.video-overview
+{
+    -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,128,0.46);
+    -moz-box-shadow: 0px 2px 5px 0px rgba(0,0,128,0.46);
+    box-shadow: 0px 2px 5px 0px rgba(0,0,128,0.46);
+}
+.panel-group .panel
+{
+     border-radius: 0px;
+    background-color: rgba(35,34,139,.6);
+    color: #ffffff;
+    -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,128,0.46);
+    -moz-box-shadow: 0px 2px 5px 0px rgba(0,0,128,0.46);
+    box-shadow: 0px 2px 5px 0px rgba(0,0,128,0.46);
+}
+.circular-header
+{
+    padding: .85rem 2.13rem;
+    border-radius: 2px;
+    border: 0;
+    -webkit-transition: .2s ease-out;
+    transition: .2s ease-out;
+    color: #fff!important;
+    margin: 6px;
+    white-space: normal!important;
+    word-wrap: break-word;
+    background-color: #a6c;
+    font-weight: 400;
+}
+.circular-ad
+{
+    padding: .85rem 2.13rem;
+    border-radius: 2px;
+    border: 0;
+    -webkit-transition: .2s ease-out;
+    transition: .2s ease-out;
+    color: #fff!important;
+    margin: 6px;
+    white-space: normal!important;
+    word-wrap: break-word;
+    background-color: #33b5e5;
+    font-weight: 400;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    z-index: 1;
+}
+.fa-space-shuttle
+{
+    font-size: 20px;
+    font-weight: 500;
+    color: #ffffff;
+}
+.fa-home
+{
+    font-size: 30px;
+    font-weight: 600;
+    transition: .5s;
+}
+.navbar-nav li:hover .fa-home
+{
+    color: #CC0000;
+}
+.form-header-blue-gradient
+{
+    color: #fff;
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 1rem;
+    border-radius: 2px;
+    -webkit-box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
+    box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
+    background: linear-gradient(135deg,#000 0,#062a64 100%);
+}
+.md-form
+{
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+.md-form .prefix {
+    position: absolute;
+    width: 3rem;
+    font-size: 2rem;
+    -webkit-transition: color .2s;
+    transition: color .2s;
+}
+.md-form .prefix~input {
+    margin-left: 3rem;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    border-radius: 0;
+    outline: 0;
+    height: 2.1rem;
+    width: 90%;
+    font-size: 1rem;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+    padding: .5rem 0 .6rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    background-color: transparent;
+    background-image: none;
+    border-radius: 0;
+    margin-top: .2rem;
+    margin-bottom: 1rem;
+    color: #464a4c;
+    background-clip: padding-box;
+}
+input
+{
+    display: block;
+    touch-action: manipulation;
+    overflow: visible;
+    -webkit-rtl-ordering: logical;
+    user-select: text;
+    cursor: auto;
+    -webkit-appearance: textfield;
+    text-rendering: auto;
+    color: initial;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    text-align: start;
+    margin: 0em 0em 0em 0em;
+    font: 13.3333px Arial;
+}
+.md-form .prefix~label {
+    margin-left: 3rem;
+    color: #757575;
+    position: absolute;
+    top: .8rem;
+    left: 0;
+    font-size: 1rem;
+    cursor: text;
+    transition: .2s ease-out;
+    display: inline-block;
+}
