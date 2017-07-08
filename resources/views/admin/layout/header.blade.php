@@ -5,7 +5,7 @@
         <!-- BEGIN LOGO -->
         <div class="page-logo">
             <a href="#">
-                <img src="{{url('')}}/uploads/logo/logo-admin.png" alt="logo" class="logo-default" /> </a>
+                <img src="{{url('')}}/images/Logo 3.jpg" alt="logo" class="logo-default" style="height: 60px;" /> </a>
             <div class="menu-toggler sidebar-toggler">
                 <span></span>
             </div>
@@ -33,7 +33,7 @@
                 <li class="dropdown dropdown-user">
                     <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                         
-                        <span class="username username-hide-on-mobile"> {{auth()->user()->name}} </span>
+                        <span class="username username-hide-on-mobile"> {{Auth::guard('admin')->user()->name}} </span>
                         <i class="fa fa-angle-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-default">

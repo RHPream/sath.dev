@@ -1,7 +1,7 @@
 <!-- BEGIN FOOTER -->
 <div class="page-footer">
-	<div class="page-footer-inner"> 2016 &copy; Uniting Trade By
-		<a target="_blank" href="#"></a> &nbsp;|&nbsp;
+	<div class="page-footer-inner"> 2017 &copy; Sagor. All right reserved.
+		<a target="_blank" href="#"></a>
 		
 	</div>
 	<div class="scroll-to-top">

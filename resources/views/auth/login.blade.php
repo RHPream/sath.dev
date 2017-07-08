@@ -1,4 +1,4 @@
-@extends('layouts.app')
+{{--@extends('layouts.app')
 
 @section('content')
 <div class="container">
@@ -65,4 +65,40 @@
         </div>
     </div>
 </div>
+@endsection--}}
+
+
+@extends('layouts.guestLayout')
+
+@section('slider')
+    <!--Form with header-->
+    <div>
+        <div>
+            <form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">
+            {{ csrf_field() }}
+            <!--Header-->
+                <div class="form-header-blue-gradient">
+                    <h3><i class="fa fa-sign-in auth-icon"></i> Login:</h3>
+                </div>
+                <div class="md-form">
+                    <i class="fa fa-envelope prefix"></i>
+                    <input type="text" id="form2" name="email" class="form-control" placeholder="Email / Phone number">
+                </div>
+
+                <div class="md-form">
+                    <i class="fa fa-lock prefix"></i>
+                    <input type="password" name="password" id="form4" class="form-control" placeholder="Password">
+                </div>
+
+                <div class="text-center">
+                    <input type="submit" value="Login" class="btn btn-indigo">
+                    {{--<button class="btn btn-indigo">Login</button>--}}
+                    <hr>
+                </div>
+            </form>
+
+
+        </div>
+    </div>
+    <!--/Form with header-->
 @endsection

@@ -1,3 +1,4 @@
+{{--
 @extends('layouts.app')
 
 @section('content')
@@ -73,4 +74,49 @@
         </div>
     </div>
 </div>
+@endsection
+--}}
+@extends('layouts.guestLayout')
+
+@section('slider')
+    <!--Form with header-->
+    <div>
+        <div>
+
+            <!--Header-->
+            <div class="form-header-blue-gradient">
+                <h3><i class="fa fa-user-o auth-icon"></i> Register:</h3>
+            </div>
+
+            <!--Body-->
+            <div class="md-form">
+                <i class="fa fa-user prefix"></i>
+                <input type="text" id="form3" class="form-control" placeholder="Name">
+            </div>
+            <div class="md-form">
+                <i class="fa fa-envelope prefix"></i>
+                <input type="text" id="form2" class="form-control" placeholder="Email">
+            </div>
+            <div class="md-form">
+                <i class="fa fa-phone prefix"></i>
+                <input type="text" id="form2" class="form-control" placeholder="Phone number">
+            </div>
+
+            <div class="md-form">
+                <i class="fa fa-lock prefix"></i>
+                <input type="password" id="form4" class="form-control" placeholder="Password">
+            </div>
+            <div class="md-form">
+                <i class="fa fa-unlock prefix"></i>
+                <input type="password" id="form5" class="form-control" placeholder="Confirmation Password">
+            </div>
+
+            <div class="text-center">
+                <button class="btn btn-indigo">Sign up</button>
+                <hr>
+            </div>
+
+        </div>
+    </div>
+    <!--/Form with header-->
 @endsection

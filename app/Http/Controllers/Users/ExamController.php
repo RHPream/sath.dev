@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Users;
 
 use App\Models\ExamQuestion;
+use App\Models\ExamRanking;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -32,6 +33,23 @@ class ExamController extends Controller
                 }
             }
         }
-        echo $count;
+
+        dd($count);
+
+//        $insert = new ExamRanking();
+//        $insert->exam_id = 1;
+//        $insert->marks = $count;
+//        $insert->user_id = 3;
+//        $insert->save();
+//
+//        $rankings = ExamRanking::where('exam_id',1)->orderBy('marks','desc')->get();
+
+//        return view('');
+
+
+    }
+    public function finalModelTest()
+    {
+        return view('exam.final');
     }
 }

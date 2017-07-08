@@ -15,6 +15,7 @@ class CreateExamRankingsTable extends Migration
     {
         Schema::create('exam_rankings', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('exam_id');
             $table->unsignedInteger('user_id');
             $table->float('marks');
             $table->timestamps();

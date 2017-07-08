@@ -12,21 +12,21 @@
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <a href="{{url('')}}/admin/users">Subjects</a>
+            <a href="{{url('')}}/admin/users">Lectures</a>
         </li>
     </ul>
     <div class="page-toolbar">
         <div class="form-actions">
             <div class="btn-set pull-left">
-                <a href="{{url('admin/subject/create')}}" class="btn btn-primary">Add Subject</a>
+                <a href="{{url('admin/lecture/create')}}" class="btn btn-primary">Add Lecture</a>
             </div>
         </div>
     </div>
 @endsection
 
 @section('title')
-    <h1 class="page-title"> Subjects
-        <small>Recent Subjects</small>
+    <h1 class="page-title"> Lectures
+        <small>Recent Lectures</small>
     </h1>
 @endsection
 
@@ -35,7 +35,7 @@
     <div class="portlet box green">
         <div class="portlet-title">
             <div class="caption">
-                <i class="fa fa-globe"></i>Subjects </div>
+                <i class="fa fa-globe"></i>Lectures </div>
             <div class="tools"> </div>
         </div>
         <div class="portlet-body">
@@ -44,8 +44,8 @@
                 <tr>
                     <th> # </th>
                     <th> Name </th>
-                    <th> Class </th>
-                    <th> Origin </th>
+                    <th> Subject </th>
+                    <th> Chapter </th>
                     <th> Slug </th>
                     <th> Description </th>
                     <th> Actions </th>
@@ -53,14 +53,14 @@
                 </thead>
                 <tbody>
                 <?php $i = 1; ?>
-                @foreach($subjects as $subject)
+                @foreach($lectures as $lecture)
                     <tr>
                         <td>{{$i++}}</td>
-                        <td> {{$subject->name}}</td>
-                        <td> {{$subject->class}}</td>
-                        <td> {{$subject->origin}}</td>
-                        <td> {{$subject->slug}}</td>
-                        <td> {{$subject->description}}</td>
+                        <td> {{$lecture->name}}</td>
+                        <td> {{$lecture->subject->name}}</td>
+                        <td> {{$lecture->chapter->name}}</td>
+                        <td> {{$lecture->slug}}</td>
+                        <td> {{$lecture->description}}</td>
                         <td>
                             <div class="btn-group">
                                 <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
@@ -68,11 +68,11 @@
                                 </button>
                                 <ul class="dropdown-menu pull-left" role="menu">
                                     <li>
-                                        <a href="{{url('admin/subject').'/'.$subject->id.'/edit'}}">
+                                        <a href="{{url('admin/lecture').'/'.$lecture->id.'/edit'}}">
                                             <i class="glyphicon glyphicon-edit"></i> Edit </a>
                                     </li>
                                     <li>
-                                        <a href="javascript:;" class="row-delete" id="{{$subject->id}}">
+                                        <a href="javascript:;" class="row-delete" id="{{$lecture->id}}">
                                             <i class="glyphicon glyphicon-remove"></i> Delete </a>
                                     </li>
                                 </ul>
@@ -104,7 +104,7 @@
                     text: "Are you sure?",
                     type: "info",
                     showCancelButton: true,
-                    closeOnConfirm: false,
+                    closeOnConfirm: true,
                     showLoaderOnConfirm: false, },
                 function(){
                     setTimeout(function(){
@@ -116,7 +116,7 @@
         function ajax_delete(id){
             $.ajax({
                 method: 'DELETE',
-                url   : "{{url('admin/subject')}}/"+id,
+                url   : "{{url('admin/lecture')}}/"+id,
                 data  : {
                     _token : "{{csrf_token()}}"
                 },

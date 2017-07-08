@@ -31,6 +31,19 @@ Route::prefix('admin')->group(function() {
   Route::get('/password/reset', 'Auth\AdminForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
   Route::post('/password/reset', 'Auth\AdminResetPasswordController@reset');
   Route::get('/password/reset/{token}', 'Auth\AdminResetPasswordController@showResetForm')->name('admin.password.reset');
+
+  Route::resource('exams','Admins\ExamController');
+  Route::get('set-question/{id}','Admins\ExamController@setQuestion');
+  Route::PATCH('add-question/{id}','Admins\ExamController@addQuestion');
+
+  Route::resource('subject','Admins\SubjectController');
+  Route::resource('lecture','Admins\LactureController');
+  Route::resource('chapter','Admins\ChapterController');
+  Route::POST('get-chapter/{id}','Admins\LactureController@getChapter');
+  Route::resource('university','Admins\UniversityController');
+  Route::resource('circular','Admins\CircularController');
+  Route::resource('message','Admins\MessageController');
+
 });
 
 Auth::routes();
@@ -39,4 +52,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 //Exam Route
 Route::get('/exam','Users\ExamController@index');
+Route::get('/rank','Users\ExamController@rank');
 Route::post('/exam-submit','Users\ExamController@judge')->name('submit-ans');
+
+Route::get('/final-exam','Users\ExamController@finalModelTest');
+
+
+Route::get('/subject','Users\SubjectController@index');
+Route::get('/routine','Users\SubjectController@routine');
+Route::get('/question','Users\SubjectController@question');
