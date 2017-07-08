@@ -45,13 +45,13 @@
                 {{method_field('PATCH')}}
                 <div class="form-body">
                     <div class="form-group">
-                        <label class="col-md-1 control-label">Name</label>
+                        <label class="col-md-2 control-label">Name</label>
                         <div class="col-md-9">
                             <input type="text" name="name" class="form-control" placeholder="Enter Name" value="{{old('name')?old('name'):$lecture->name}}">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-1 control-label">Subject</label>
+                        <label class="col-md-2 control-label">Subject</label>
                         <div class="col-md-9">
                             <select name="subject_id" class="form-control">
                                 <option value="">Select a subject</option>
@@ -62,7 +62,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-1 control-label">Chapter</label>
+                        <label class="col-md-2 control-label">Chapter</label>
                         <div class="col-md-9">
                             <select name="chapter_id" class="form-control">
                                 <option value="">Select a chapter</option>
@@ -73,21 +73,27 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-1 control-label">Description</label>
+                        <label class="col-md-2 control-label">Description</label>
                         <div class="col-md-9">
                             <textarea name="description" class="form-control" id="description" cols="30" rows="10">{{old('description')?old('description'):$lecture->description}}</textarea>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-1 control-label">Slug</label>
+                        <label class="col-md-2 control-label">Slug</label>
                         <div class="col-md-9">
                             <input type="text" name="slug" class="form-control" placeholder="Enter Slug" value="{{old('slug')?old('slug'):$lecture->slug}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Tutorial Link</label>
+                        <div class="col-md-9">
+                            <input type="text" name="tut_link" class="form-control" placeholder="Enter Tutorial Link" value="{{old('tut_link')?old('tut_link'):$lecture->tut_link}}">
                         </div>
                     </div>
                 </div>
                 <div class="form-actions fluid">
                     <div class="row">
-                        <div class="col-md-offset-1 col-md-9">
+                        <div class="col-md-offset-2 col-md-9">
                             <button type="submit" class="btn green">Update</button>
                         </div>
                     </div>

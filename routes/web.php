@@ -43,6 +43,8 @@ Route::prefix('admin')->group(function() {
   Route::resource('university','Admins\UniversityController');
   Route::resource('circular','Admins\CircularController');
   Route::resource('message','Admins\MessageController');
+  Route::get('home-page','Admins\PageController@homePageEdit');
+  Route::post('home-page','Admins\PageController@homePageUpdate')->name('home-page.store');
 
 });
 

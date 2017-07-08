@@ -49,7 +49,7 @@ class LactureController extends Controller
             'description'=>'required',
             'slug'=>'required',
         ]);
-        $lecture = Lecture::create(['name'=>$request->name,'subject_id'=>$request->subject_id,'chapter_id'=>$request->chapter_id,'description'=>$request->description,'slug'=>$request->slug]);
+        $lecture = Lecture::create(['name'=>$request->name,'tut_link'=>$request->tut_link,'subject_id'=>$request->subject_id,'chapter_id'=>$request->chapter_id,'description'=>$request->description,'slug'=>$request->slug]);
 
         return $this->index();
     }
@@ -101,6 +101,7 @@ class LactureController extends Controller
             'chapter_id'=>$request->chapter_id,
             'description'=>$request->description,
             'slug'=>$request->slug,
+            'tut_link'=>$request->tut_link
         ];
         $lecture = Lecture::where('id',$id)->first();
         $lecture->update($data);

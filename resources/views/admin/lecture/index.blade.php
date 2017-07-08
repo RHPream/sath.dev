@@ -48,6 +48,7 @@
                     <th> Chapter </th>
                     <th> Slug </th>
                     <th> Description </th>
+                    <th> Tutorial </th>
                     <th> Actions </th>
                 </tr>
                 </thead>
@@ -61,6 +62,7 @@
                         <td> {{$lecture->chapter->name}}</td>
                         <td> {{$lecture->slug}}</td>
                         <td> {{$lecture->description}}</td>
+                        <td><a href="{{$lecture->tut_link}}" target="_blank">{{substr($lecture->tut_link,0,24).'...'}}</a></td>
                         <td>
                             <div class="btn-group">
                                 <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
