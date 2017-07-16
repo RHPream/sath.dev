@@ -79,8 +79,10 @@
 @extends('layouts.guestLayout')
 
 @section('slider')
+    <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
+    {{ csrf_field() }}
     <!--Form with header-->
-    <div>
+     <div>
         <div>
 
             <!--Header-->
@@ -91,32 +93,34 @@
             <!--Body-->
             <div class="md-form">
                 <i class="fa fa-user prefix"></i>
-                <input type="text" id="form3" class="form-control" placeholder="Name">
+                <input type="text" id="form3" name="name" style="width: 80%;margin-left: 10%;" class="form-control" placeholder="Name">
             </div>
             <div class="md-form">
                 <i class="fa fa-envelope prefix"></i>
-                <input type="text" id="form2" class="form-control" placeholder="Email">
+                <input type="text" id="form2" name="email" style="width: 80%;margin-left: 10%;" class="form-control" placeholder="Email">
             </div>
             <div class="md-form">
                 <i class="fa fa-phone prefix"></i>
-                <input type="text" id="form2" class="form-control" placeholder="Phone number">
+                <input type="text" id="form2" required style="width: 80%;margin-left: 10%;" name="phone" class="form-control" placeholder="Phone number">
             </div>
 
             <div class="md-form">
                 <i class="fa fa-lock prefix"></i>
-                <input type="password" id="form4" class="form-control" placeholder="Password">
+                <input type="password" id="form4" name="password" style="width: 80%;margin-left: 10%;" class="form-control" placeholder="Password">
             </div>
             <div class="md-form">
                 <i class="fa fa-unlock prefix"></i>
-                <input type="password" id="form5" class="form-control" placeholder="Confirmation Password">
+                <input type="password" id="form5" name="password_confirmation" style="width: 80%;margin-left: 10%;" class="form-control" placeholder="Confirmation Password">
             </div>
 
             <div class="text-center">
-                <button class="btn btn-indigo">Sign up</button>
+                <input type="submit" class="btn btn-indigo" value="Sign up">
+                {{--<button class="btn btn-indigo">Sign up</button>--}}
                 <hr>
             </div>
 
         </div>
     </div>
     <!--/Form with header-->
+    </form>
 @endsection

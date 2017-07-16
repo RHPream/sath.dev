@@ -82,12 +82,12 @@
                 </div>
                 <div class="md-form">
                     <i class="fa fa-envelope prefix"></i>
-                    <input type="text" id="form2" name="email" class="form-control" placeholder="Email / Phone number">
+                    <input type="text" id="form2" name="email" style="width: 80%;margin-left: 10%;" class="form-control" placeholder="Email / Phone number">
                 </div>
 
                 <div class="md-form">
                     <i class="fa fa-lock prefix"></i>
-                    <input type="password" name="password" id="form4" class="form-control" placeholder="Password">
+                    <input type="password" name="password" style="width: 80%;margin-left: 10%;" id="form4" class="form-control" placeholder="Password">
                 </div>
 
                 <div class="text-center">

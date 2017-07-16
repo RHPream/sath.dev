@@ -15,4 +15,8 @@ class Lecture extends Model
     {
         return $this->belongsTo(Chapter::class);
     }
+    public function exam($slug)
+    {
+        return Exam::where('slug',$slug)->first();
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admins;
 
+use App\Models\Footer;
 use App\Models\HomePage;
 use App\Models\Sidebar;
 use Illuminate\Http\Request;
@@ -13,6 +14,7 @@ class PageController extends Controller
     {
         $home = HomePage::all()->first();
         $sidebar = Sidebar::all()->first();
+//        $dropdowns = Footer::all();
         return view('admin.page.home-page',compact('home','sidebar'));
     }
     public function homePageUpdate(Request $request)
@@ -42,6 +44,23 @@ class PageController extends Controller
         }
         else {
             $sidebar = Sidebar::create(['ceo_description'=>$request->ceo_description,'side_video'=>$request->sidebar_video]);
+        }
+
+        $dropdowns = $request->input('dropdown');
+        if(isset($dropdowns))
+        {
+            foreach ($dropdowns as $d)
+            {
+                if(isset($d['dname']))
+                {
+                    $f = new Footer();
+                    $f->dropdown_name = $d['drop_id'];
+                    $f->parent_name = isset($d['parent_id'])?$d['parent_id']:0;
+                    $f->name = $d['dname'];
+                    $f->link = 'https://www.google.com';
+                    $f->save();
+                }
+            }
         }
         return back();
     }

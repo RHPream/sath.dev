@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'Users\PageController@welcome');
 
 Auth::routes();
 
@@ -39,27 +37,31 @@ Route::prefix('admin')->group(function() {
   Route::resource('subject','Admins\SubjectController');
   Route::resource('lecture','Admins\LactureController');
   Route::resource('chapter','Admins\ChapterController');
+  Route::resource('routine','Admins\RoutineController');
   Route::POST('get-chapter/{id}','Admins\LactureController@getChapter');
   Route::resource('university','Admins\UniversityController');
   Route::resource('circular','Admins\CircularController');
   Route::resource('message','Admins\MessageController');
   Route::get('home-page','Admins\PageController@homePageEdit');
   Route::post('home-page','Admins\PageController@homePageUpdate')->name('home-page.store');
+  Route::get('payment','Admins\PaymentController@payment');
 
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/user-update', 'HomeController@userUpdate')->name('user-update');
 
 //Exam Route
-Route::get('/exam','Users\ExamController@index');
+Route::get('/exam/{slug}','Users\ExamController@index');
 Route::get('/rank','Users\ExamController@rank');
 Route::post('/exam-submit','Users\ExamController@judge')->name('submit-ans');
 
 Route::get('/final-exam','Users\ExamController@finalModelTest');
-
-
-Route::get('/subject','Users\SubjectController@index');
+Route::get('/subject/{id}','Users\SubjectController@index');
 Route::get('/routine','Users\SubjectController@routine');
 Route::get('/question','Users\SubjectController@question');
+
+//payment route
+Route::post('/pay-user', 'Users\PaymentController@pay')->name('pay-user');

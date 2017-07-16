@@ -97,6 +97,12 @@
                 </a>
             </li>
             <li class="nav-item  ">
+                <a href="{{url('admin/routine')}}" class="nav-link ">
+                    <i class="icon-layers"></i>
+                    <span class="title">Routine</span>
+                </a>
+            </li>
+            <li class="nav-item  ">
                 <a href="{{url('admin/message')}}" class="nav-link ">
                     <i class="icon-layers"></i>
                     <span class="title">Message</span>

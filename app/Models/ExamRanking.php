@@ -11,4 +11,12 @@ class ExamRanking extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function exam()
+    {
+        return $this->belongsTo(Exam::class);
+    }
+    public function category($id)
+    {
+        return ExamCategory::where('id',$id)->first()->name;
+    }
 }

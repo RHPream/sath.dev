@@ -1,5 +1,15 @@
 @extends('layouts.guestLayout')
 
 @section('slider')
-    <iframe width="100%" height="350" src="https://www.youtube.com/embed/aBqU0LDd3WY" frameborder="0" allowfullscreen></iframe>
+    <div class="home-video">
+        {!!  $video->video  !!}
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('.home-video iframe').attr('width','100%');
+            $('.home-video iframe').attr('height','360');
+            $('.home-video iframe').attr('autoplay','1');
+        });
+    </script>
 @endsection
