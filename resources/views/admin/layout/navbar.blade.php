@@ -76,6 +76,7 @@
                     </li>
                 </ul>
             </li>
+
             <li class="nav-item  ">
                 <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="icon-user"></i>
@@ -89,6 +90,12 @@
                         </a>
                     </li>
                 </ul>
+            </li>
+            <li class="nav-item  ">
+                <a href="{{url('admin/payment')}}" class="nav-link ">
+                    <i class="icon-layers"></i>
+                    <span class="title">Payment</span>
+                </a>
             </li>
             <li class="nav-item  ">
                 <a href="{{url('admin/exams')}}" class="nav-link ">

@@ -15,7 +15,7 @@ class PaymentController extends Controller
         $this->validate($request,[
            'send_from' => 'required|min:11',
            'method_type' => 'required',
-           'amount' => 'required'
+           'amount' => 'required|numeric'
         ]);
         $data = [
             'user_id' => Auth::user()->id,

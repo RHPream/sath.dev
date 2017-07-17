@@ -44,7 +44,9 @@ Route::prefix('admin')->group(function() {
   Route::resource('message','Admins\MessageController');
   Route::get('home-page','Admins\PageController@homePageEdit');
   Route::post('home-page','Admins\PageController@homePageUpdate')->name('home-page.store');
-  Route::get('payment','Admins\PaymentController@payment');
+  Route::get('payment','Admins\PaymentController@index');
+  Route::post('approve-payment/{id}','Admins\PaymentController@approve');
+  Route::post('live-pay','Admins\PaymentController@livePay')->name('live-pay');
 
 });
 
