@@ -44,7 +44,6 @@
                             <div class="details">
                                 <div class="number"></div>
                                 <div class="desc"> {{$l->name}} </div>
-{{--                            <div class="desc" style="font-size: 15px;">{{$l->year->university}} </div>--}}
                             </div>
                         </a>
                     </div>
