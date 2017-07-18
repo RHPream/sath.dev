@@ -34,7 +34,35 @@
             <li class="heading">
                 <h3 class="uppercase">Features</h3>
             </li>
-
+            <li class="nav-item  ">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="icon-user"></i>
+                    <span class="title">Question set</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item  ">
+                        <a href="{{url('lecture-wise-exams')}}" class="nav-link ">
+                            <span class="title">Lecture wise</span>
+                        </a>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="{{url('admin/users')}}" class="nav-link ">
+                            <span class="title">Subject wise</span>
+                        </a>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="{{url('admin/users')}}" class="nav-link ">
+                            <span class="title">Year wise</span>
+                        </a>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="{{url('admin/users')}}" class="nav-link ">
+                            <span class="title">Final Exam</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
             <li class="nav-item  ">
                 <a href="{{url('admin/chapter')}}" class="nav-link ">
                     <i class="icon-layers"></i>

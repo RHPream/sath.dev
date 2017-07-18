@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admins;
 
 use App\Models\Subject;
+use App\Models\UserClass;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -27,7 +28,8 @@ class SubjectController extends Controller
      */
     public function create()
     {
-        return view('admin.subject.create');
+        $classes = UserClass::all();
+        return view('admin.subject.create',compact('classes'));
     }
 
     /**
@@ -70,7 +72,8 @@ class SubjectController extends Controller
     public function edit($id)
     {
         $subject = Subject::find($id);
-        return view('admin.subject.edit',compact('subject'));
+        $classes = UserClass::all();
+        return view('admin.subject.edit',compact('subject','classes'));
     }
 
     /**

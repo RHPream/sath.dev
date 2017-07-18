@@ -1,0 +1,10 @@
+.portlet-body
+{
+    background-image: url("/images/19048388_1681253752169486_1916118817_o.jpg");
+    -webkit-background-size: contain;
+    background-size: contain;
+}
+.table-hover>tbody>tr:hover, .table-hover>tbody>tr:hover>td
+{
+    color: #000000;
+}

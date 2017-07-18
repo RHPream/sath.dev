@@ -56,9 +56,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/user-update', 'HomeController@userUpdate')->name('user-update');
 
 //Exam Route
+Route::get('/lecture-wise-exams','Users\ExamController@lectureWiseExams');
+Route::get('/exam-question/{slug}/{own}','Users\ExamController@examPaper');
 Route::get('/exam/{slug}','Users\ExamController@index');
 Route::get('/rank','Users\ExamController@rank');
-Route::post('/exam-submit','Users\ExamController@judge')->name('submit-ans');
+//Exam Judging route
+Route::post('/judge-exam','Users\ExamController@judge')->name('judge-exam');
 
 Route::get('/final-exam','Users\ExamController@finalModelTest');
 Route::get('/subject/{id}','Users\SubjectController@index');

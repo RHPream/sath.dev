@@ -66,6 +66,27 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label class="col-md-3 control-label">Class</label>
+                                <div class="col-md-9">
+                                    <select name="class_id" class="form-control">
+                                        <?php
+                                            if(Auth::user()->userProfile->class_id!=0)
+                                            {
+                                                $c = Auth::user()->userProfile->userclass(Auth::user()->userProfile->class_id)->name;
+                                            }
+                                            else{
+                                                $c = 'Please Select your class';
+                                            }
+
+                                        ?>
+                                        <option value="{{$c}}">{{$c}}</option>
+                                        @foreach($classes as $c)
+                                                <option value="{{$c->name}}">{{$c->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label class="col-md-3 control-label">Balance</label>
                                 <div class="col-md-9">
                                     <input type="text" class="form-control" placeholder="Balance" value="{{Auth::user()->userProfile->balance}} TK" disabled>
@@ -123,7 +144,7 @@
                         <div class="form-actions fluid">
                             <div class="row">
                                 <div class="col-md-offset-3 col-md-9">
-                                    <button type="submit" class="btn green">Update</button>
+                                    <button type="submit" class="btn green">Submit</button>
                                 </div>
                             </div>
                         </div>
@@ -154,10 +175,6 @@
                         @endforeach
                         </tbody>
                     </table>
-                </div>
-                <div class="col-xs-10 col-xs-offset-1">
-                    <h1 class="text-center">Make some deposit</h1>
-
                 </div>
                 <!-- END FORM-->
             </div>

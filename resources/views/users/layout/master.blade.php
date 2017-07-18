@@ -50,10 +50,11 @@
             {
                 .payment-last-input
                 {
-                    margin-bottom: 75px;
+                    margin-bottom: 123px;
                 }
             }
         </style>
+        <link rel="stylesheet" href="{{url('')}}/css/userCustom.css" type="text/css">
         </head>
     <!-- END HEAD -->
         

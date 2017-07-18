@@ -53,7 +53,13 @@
                     <div class="form-group">
                         <label class="col-md-1 control-label">Class</label>
                         <div class="col-md-9">
-                            <input type="text" name="class" class="form-control" placeholder="Enter Subject" value="{{old('class')?old('class'):$subject->class}}">
+                            <select name="class" class="form-control">
+                                <option value="">Please select class</option>
+                                @foreach($classes as $c)
+                                    <option value="{{$c->id}}">{{$c->name}}</option>
+                                @endforeach
+                            </select>
+                            {{--<input type="text" name="class" class="form-control" placeholder="Enter Subject" value="{{old('class')?old('class'):$subject->class}}">--}}
                         </div>
                     </div>
                     <div class="form-group">

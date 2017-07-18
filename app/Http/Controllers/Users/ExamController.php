@@ -6,12 +6,18 @@ use App\Models\Exam;
 use App\Models\ExamQuestion;
 use App\Models\ExamRanking;
 use App\Models\Footer;
+use App\Models\Lecture;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class ExamController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function index($slug)
     {
@@ -26,36 +32,63 @@ class ExamController extends Controller
         $count = count($request->input());
         $count = $count%2==0?$count/2:($count-1)/2;
         $res = 0;
+        $currects = [];
+        $wrongs = [];
         for($i=1;$i<=$count;$i++)
         {
             $key = 'ques'.$i;
             $ans = 'ans'.$i;
-
+            $qa = ExamQuestion::where('id','=',$request->$key)->first();
             if($request->$ans) {
-                if(ExamQuestion::where('id','=',$request->$key)->first()->answer==$request->$ans)
-                {
+                if($qa->answer==$request->$ans) {
+                    $currects[$i]= [
+                        'question' => $qa->question,
+                        'answer' => $qa->answer
+                    ];
                     $res++;
-                } else
-                {
+                } else {
+                    $wrongs[$i] = [
+                        'question' => $qa->question,
+                        'answer' => $qa->answer,
+                        'your_answer' => $request->$ans
+                    ];
                     $res -= .25;
                 }
             }
         }
-        if(Auth::user()){
-            $user = Auth::user()->id;
-        } else {
-            $user = 0;
-        }
+        $user = Auth::user()->id;
+
         $insert = new ExamRanking();
-        $insert->exam_id = 1;
-        $insert->marks = $count;
+        $insert->exam_id = $qa->exam_id;
+        $insert->marks = $res;
         $insert->user_id = $user;
-        $insert->save();
+//        $insert->save();
 
-        $rankings = ExamRanking::where('exam_id',1)->orderBy('marks','desc')->get();
-        $current = $insert->id;
+        $rankings = ExamRanking::where('exam_id',$qa->exam_id)->orderBy('marks','desc')->get();
+        $position = 0;
+        foreach ($rankings as $r)
+        {
+            $position++;
+            if($r->user_id==$user){
+                break;
+            }
+        }
+        $comment = '';
+        if($res>=$count*0.8) {
+            $comment = 'Good job. Carry on.';
+        } elseif ($res>=$count*0.75){
+            $comment = 'Nice. Try a bit more';
+        } elseif ($res>=$count*0.60){
+            $comment = 'Average. Try hardly';
+        } elseif ($res>=$count*0.50){
+            $comment = 'Bellow average.';
+        } elseif ($res>=$count*0.40){
+            $comment = 'Poor marks.';
+        } else {
+            $comment = 'You are in danger zone.';
+        }
 
-        return view('exam.ranking',compact('rankings','current','dropdowns'));
+        return view('users.exam.result',compact('currects','wrongs','position','res','comment'));
 
 
     }
@@ -63,5 +96,24 @@ class ExamController extends Controller
     {
         $dropdowns = Footer::where('parent_name',0)->get();
         return view('exam.final',compact('dropdowns'));
+    }
+    public function lectureWiseExams()
+    {
+        $class = Auth::user()->userProfile->class_id;
+        if($class) {
+            $lectures = Lecture::where('class_id',$class)->get();
+            return view('users.lecture.lecture',compact('lectures'));
+        }
+        Session::flash('success','Please give us your class for exact advice.');
+        return back();
+    }
+    public function examPaper($slug,$own)
+    {
+        $exam = Exam::where('slug',$slug)->where('owns',$own)->firstOrFail();
+        $questions = ExamQuestion::where('exam_id',$exam->id)->get();
+        $numberOfQuestion = count($questions);
+        $time = $numberOfQuestion/2;
+        Session::flash('success','Your exam has began. For your '.$numberOfQuestion.' question you have just '.$time.' minute. After this time your exam paper will automatically submitted. Good luck !!!');
+        return view('users.exam.exam',compact('exam','questions'));
     }
 }
