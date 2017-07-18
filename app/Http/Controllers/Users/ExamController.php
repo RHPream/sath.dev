@@ -7,6 +7,8 @@ use App\Models\ExamQuestion;
 use App\Models\ExamRanking;
 use App\Models\Footer;
 use App\Models\Lecture;
+use App\Models\Subject;
+use App\Models\UserProfile;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -32,7 +34,7 @@ class ExamController extends Controller
         $count = count($request->input());
         $count = $count%2==0?$count/2:($count-1)/2;
         $res = 0;
-        $currects = [];
+        $corrects = [];
         $wrongs = [];
         for($i=1;$i<=$count;$i++)
         {
@@ -41,7 +43,7 @@ class ExamController extends Controller
             $qa = ExamQuestion::where('id','=',$request->$key)->first();
             if($request->$ans) {
                 if($qa->answer==$request->$ans) {
-                    $currects[$i]= [
+                    $corrects[$i]= [
                         'question' => $qa->question,
                         'answer' => $qa->answer
                     ];
@@ -87,15 +89,18 @@ class ExamController extends Controller
         } else {
             $comment = 'You are in danger zone.';
         }
-
-        return view('users.exam.result',compact('currects','wrongs','position','res','comment'));
-
-
+        Session::flash('success','You got '.$res.' out of '.$count);
+        return view('users.exam.result',compact('corrects','wrongs','position','res','comment'));
     }
     public function finalModelTest()
     {
-        $dropdowns = Footer::where('parent_name',0)->get();
-        return view('exam.final',compact('dropdowns'));
+        $class = Auth::user()->userProfile->class_id;
+        if($class) {
+            $exams = Exam::where('is_final','!=',0)->where('class_id',$class)->get();
+            return view('users.final.finals',compact('exams'));
+        }
+        Session::flash('success','Please give us your class for exact advice.');
+        return back();
     }
     public function lectureWiseExams()
     {
@@ -110,10 +115,47 @@ class ExamController extends Controller
     public function examPaper($slug,$own)
     {
         $exam = Exam::where('slug',$slug)->where('owns',$own)->firstOrFail();
+        if($exam->is_final) {
+            $user = Auth::user()->id;
+            $up = UserProfile::where('id',$user)->firstOrFail();
+            if(floatval($up->balance)>1000){
+                $up->balance -=1000;
+                $up->save();
+                $questions = ExamQuestion::where('exam_id',$exam->id)->get();
+                $numberOfQuestion = count($questions);
+                $time = $numberOfQuestion/2;
+                Session::flash('success','Your exam has began. For your '.$numberOfQuestion.' question you have just '.$time.' minute. After this time your exam paper will automatically submitted. Good luck !!!');
+                return view('users.exam.exam',compact('exam','questions'));
+            } else {
+                Session::flash('warning','Insufficient balance for participate this exam.');
+                return back();
+            }
+        }
         $questions = ExamQuestion::where('exam_id',$exam->id)->get();
         $numberOfQuestion = count($questions);
         $time = $numberOfQuestion/2;
         Session::flash('success','Your exam has began. For your '.$numberOfQuestion.' question you have just '.$time.' minute. After this time your exam paper will automatically submitted. Good luck !!!');
         return view('users.exam.exam',compact('exam','questions'));
+
+    }
+    public function subjectWiseExams()
+    {
+        $class = Auth::user()->userProfile->class_id;
+        if($class) {
+            $subjects = Subject::where('class',$class)->get();
+            return view('users.subject.subjects',compact('subjects'));
+        }
+        Session::flash('success','Please give us your class for exact advice.');
+        return back();
+    }
+    public function yearWiseExams()
+    {
+        $class = Auth::user()->userProfile->class_id;
+        if($class) {
+            $exams = Exam::where('year_id','!=',0)->where('class_id',$class)->get();
+            return view('users.year.years',compact('exams'));
+        }
+        Session::flash('success','Please give us your class for exact advice.');
+        return back();
     }
 }

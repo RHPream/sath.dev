@@ -47,17 +47,17 @@
                         </a>
                     </li>
                     <li class="nav-item  ">
-                        <a href="{{url('admin/users')}}" class="nav-link ">
+                        <a href="{{url('subject-wise-exams')}}" class="nav-link ">
                             <span class="title">Subject wise</span>
                         </a>
                     </li>
                     <li class="nav-item  ">
-                        <a href="{{url('admin/users')}}" class="nav-link ">
+                        <a href="{{url('year-wise-exams')}}" class="nav-link ">
                             <span class="title">Year wise</span>
                         </a>
                     </li>
                     <li class="nav-item  ">
-                        <a href="{{url('admin/users')}}" class="nav-link ">
+                        <a href="{{url('final-exams')}}" class="nav-link ">
                             <span class="title">Final Exam</span>
                         </a>
                     </li>

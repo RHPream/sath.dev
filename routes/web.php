@@ -57,13 +57,14 @@ Route::post('/user-update', 'HomeController@userUpdate')->name('user-update');
 
 //Exam Route
 Route::get('/lecture-wise-exams','Users\ExamController@lectureWiseExams');
+Route::get('/subject-wise-exams','Users\ExamController@subjectWiseExams');
+Route::get('/year-wise-exams','Users\ExamController@yearWiseExams');
 Route::get('/exam-question/{slug}/{own}','Users\ExamController@examPaper');
-Route::get('/exam/{slug}','Users\ExamController@index');
-Route::get('/rank','Users\ExamController@rank');
+Route::get('/final-exams','Users\ExamController@finalModelTest');
 //Exam Judging route
 Route::post('/judge-exam','Users\ExamController@judge')->name('judge-exam');
 
-Route::get('/final-exam','Users\ExamController@finalModelTest');
+
 Route::get('/subject/{id}','Users\SubjectController@index');
 Route::get('/routine','Users\SubjectController@routine');
 Route::get('/question','Users\SubjectController@question');

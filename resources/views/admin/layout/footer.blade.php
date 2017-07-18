@@ -1,6 +1,6 @@
 <!-- BEGIN FOOTER -->
 <div class="page-footer">
-	<div class="page-footer-inner"> 2017 &copy; Sagor. All right reserved.
+	<div class="page-footer-inner"> 2017 &copy; EasySchool. All right reserved.
 		<a target="_blank" href="#"></a>
 		
 	</div>

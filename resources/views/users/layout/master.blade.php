@@ -86,6 +86,12 @@
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
                                 <i class="fa-lg fa fa-fa fa-warning"></i>  {{Session::get('success')}}.</div>
                         @endif
+                        @if(Session::has('warning'))
+                            <div id="prefix_144957054184" class="custom-alerts alert alert-warning fade in">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                                <i class="fa-lg fa fa-fa fa-warning"></i>  {{Session::get('warning')}}
+                            </div>
+                        @endif
 
                         <!-- END PAGE TITLE-->
                         <!-- END PAGE HEADER-->

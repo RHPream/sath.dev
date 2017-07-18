@@ -35,7 +35,7 @@
             <!-- BEGIN FORM-->
             <div class="row">
                 <div class="col-md-5">
-                    <h3 class="text-center">Write Answer</h3>
+                    <h3 class="text-center">Correct Answer</h3>
                     <table class="table table-inverse table-bordered table-hover" style="background-color: rgba(0,0,0,.6);color: #ffffff;">
                         <thead style="background-color: green;">
                         <tr>
@@ -46,7 +46,7 @@
                         </thead>
                         <tbody>
                         <?php $i = 1; ?>
-                        @foreach($currects as $c)
+                        @foreach($corrects as $c)
                             <tr>
                                 <td> {{$i++}}</td>
                                 <td> {{$c['question']}}</td>
@@ -82,13 +82,14 @@
                 </div>
             </div>
 
-            <div class="col-xs-12" style="background-color: rgba(5, 113, 109, 0.81);margin-top: 30px;padding: 15px;">
+            <div class="col-xs-12" style="background-color: rgba(5, 113, 109, 0.81);margin-top: 30px;padding: 15px;margin-bottom: 40px;">
                 <h1 class="text-center" style="font-weight: bold;color: #EED04A;">Marks Obtained and Comments</h1>
                 <h3 class="text-center"><strong style="color: #71f442;">Marks:</strong> <small style="color: #cdf441;">{{$res}}</small></h3>
                 <h3 class="text-center"><strong style="color: #71f442;">Position:</strong> <small style="color: #cdf441;">{{$position}}</small></h3>
                 <h3 class="text-center"><strong style="color: #71f442;">Comment:</strong> <small style="color: #cdf441;">{{$comment}}</small></h3>
 
             </div>
+            <p style="clear: both;"></p>
 
             <!-- END FORM-->
         </div>
