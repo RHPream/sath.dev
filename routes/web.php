@@ -63,10 +63,11 @@ Route::get('/exam-question/{slug}/{own}','Users\ExamController@examPaper');
 Route::get('/final-exams','Users\ExamController@finalModelTest');
 //Exam Judging route
 Route::post('/judge-exam','Users\ExamController@judge')->name('judge-exam');
-
+//routine route
+Route::get('/routine','Users\SubjectController@routine');
 
 Route::get('/subject/{id}','Users\SubjectController@index');
-Route::get('/routine','Users\SubjectController@routine');
+
 Route::get('/question','Users\SubjectController@question');
 
 //payment route

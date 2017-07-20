@@ -5,11 +5,17 @@ namespace App\Http\Controllers\Users;
 use App\Models\Footer;
 use App\Models\Lecture;
 use App\Models\Routine;
+use App\Models\UserRoutine;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class SubjectController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index($id)
     {
         $dropdowns = Footer::where('parent_name',0)->get();
@@ -18,9 +24,13 @@ class SubjectController extends Controller
     }
     public function routine()
     {
-        $dropdowns = Footer::where('parent_name',0)->get();
-        $routines = Routine::where('subject_id',3)->get();
-        return view('lecture.routine',compact('dropdowns','routines'));
+        $clas = Auth::user()->userProfile->class_id;
+        if($clas) {
+            $routines = UserRoutine::where('class_id',$clas)->get();
+            return view('users.routine.index',compact('routines'));
+        }
+        Session::flash('success','Please give us your class for exact advice.');
+        return back();
     }
     public function question()
     {

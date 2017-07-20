@@ -64,9 +64,9 @@
                 </ul>
             </li>
             <li class="nav-item  ">
-                <a href="{{url('admin/chapter')}}" class="nav-link ">
+                <a href="{{url('routine')}}" class="nav-link ">
                     <i class="icon-layers"></i>
-                    <span class="title">Previous question</span>
+                    <span class="title">Routine</span>
                 </a>
             </li>
 
