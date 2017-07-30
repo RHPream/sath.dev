@@ -51,19 +51,46 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label">Subject</label>
+                        <label class="col-md-3 control-label">Category</label>
                         <div class="col-md-4">
-                            <input type="text" name="subject" class="form-control" placeholder="Enter Subject" value="{{old('subject')!=null?old('subject'):$exam->subject}}">
+                            <select name="category" class="form-control">
+                                @foreach($categories as $category)
+                                    @if($category->id==$exam->category_id)
+                                        <option value="{{$category->id}}" selected>{{$category->name}}</option>
+                                    @else
+                                        <option value="{{$category->id}}">{{$category->name}}</option>
+                                    @endif
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label">Category</label>
+                        <label class="col-md-3 control-label">Subject</label>
                         <div class="col-md-4">
-                            <select name="category" class="form-control select2">
-                                <option value="{{$exam->category_id}}">{{$exam->category($exam->category_id)->name}}<option>
-                                @foreach($categories as $category)
-                                    @if($category->id!=$exam->category_id)
-                                        <option value="{{$category->id}}">{{$category->name}}</option>
+                            <p class="help-text">Not required if category is final or year wise</p>
+                            <select name="subject" class="form-control">
+                                <option value="">Please Select Subject</option>
+                                @foreach($subjects as $c)
+                                    @if($c->id==$exam->subject)
+                                        <option value="{{$c->id}}" selected>{{$c->name.' ( Class: '.$c->class_output($c->class)->name.' )'}}</option>
+                                    @else
+                                        <option value="{{$c->id}}">{{$c->name.' ( Class: '.$c->class_output($c->class)->name.' )'}}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Year</label>
+                        <div class="col-md-4">
+                            <p class="help-text">Not required if category is not Year wise</p>
+                            <select name="year" class="form-control">
+                                <option value="">Please select year</option>
+                                @foreach($years as $y)
+                                    @if($c->id==$exam->year_id)
+                                        <option value="{{$y->id}}" selected>{{$y->university.', Unit: '.$y->unit.', Year: '.$y->year}}</option>
+                                    @else
+                                        <option value="{{$y->id}}">{{$y->university.', Unit: '.$y->unit.', Year: '.$y->year}}</option>
                                     @endif
                                 @endforeach
                             </select>
@@ -75,6 +102,34 @@
                             <input type="text" name="slug" class="form-control" placeholder="Enter Slug" value="{{old('slug')!=null?old('slug'):$exam->slug}}">
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Suggestion</label>
+                        <div class="col-md-4">
+                            <p class="help-block">"On" is for our suggestion</p>
+                            <div class="icheck-inline">
+                                <input type="checkbox" name="owns" class="make-switch" data-on-color="info" value="1" data-off-color="success"
+                                       @if(old('owns') == '1'|| $exam->owns==1)
+                                       checked
+                                        @endif
+                                >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Payable</label>
+                        <div class="col-md-4">
+                            <p class="help-block">"On" is for final exam</p>
+                            <div class="icheck-inline">
+                                <input type="checkbox" name="is_final" class="make-switch" data-on-color="info" value="1" data-off-color="success"
+                                       @if(old('is_final') == '1'||$exam->is_final==1)
+                                       checked
+                                        @endif
+                                >
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
                 <div class="form-actions fluid">
                     <div class="row">

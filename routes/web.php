@@ -14,7 +14,7 @@
 Route::get('/', 'Users\PageController@welcome');
 
 Auth::routes();
-
+Route::get('register/confirm/{token}', 'Auth\RegisterController@confirmUser');
 Route::get('/home', 'HomeController@index');
 Route::get('/users/logout', 'Auth\LoginController@userLogout')->name('user.logout');
 
@@ -38,6 +38,7 @@ Route::prefix('admin')->group(function() {
   Route::resource('lecture','Admins\LactureController');
   Route::resource('chapter','Admins\ChapterController');
   Route::resource('routine','Admins\RoutineController');
+  Route::get('class-routine/{id}','Admins\RoutineController@classWise');
   Route::POST('get-chapter/{id}','Admins\LactureController@getChapter');
   Route::resource('university','Admins\UniversityController');
   Route::resource('circular','Admins\CircularController');

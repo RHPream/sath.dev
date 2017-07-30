@@ -32,4 +32,10 @@ class User extends Authenticatable
     {
         return $this->hasOne(UserProfile::class);
     }
+    public static function boot(){
+        parent::boot();
+        static::creating(function ($user){
+            $user->verification_token = str_random(40);
+        });
+    }
 }

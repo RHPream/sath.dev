@@ -50,17 +50,36 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label">Subject</label>
+                        <label class="col-md-3 control-label">Category</label>
                         <div class="col-md-4">
-                            <input type="text" name="subject" class="form-control" placeholder="Enter Subject" value="{{old('subject')}}">
+                            <select name="category" class="form-control">
+                                <option value="">Please Select category</option>
+                                @foreach($categories as $c)
+                                    <option value="{{$c->id}}">{{$c->name}}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label">Category</label>
+                        <label class="col-md-3 control-label">Subject</label>
                         <div class="col-md-4">
-                            <select name="category" class="form-control select2">
-                                @foreach($categories as $category)
-                                <option value="{{$category->id}}">{{$category->name}}</option>
+                            <p class="help-text">Not required if category is final or year wise</p>
+                            <select name="subject" class="form-control">
+                                <option value="">Please Select Subject</option>
+                                @foreach($subjects as $c)
+                                    <option value="{{$c->id}}">{{$c->name.' ( Class: '.$c->class_output($c->class)->name.' )'}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Year</label>
+                        <div class="col-md-4">
+                            <p class="help-text">Not required if category is not Year wise</p>
+                            <select name="year" class="form-control">
+                                <option value="">Please select year</option>
+                                @foreach($years as $y)
+                                <option value="{{$y->id}}">{{$y->university.', Unit: '.$y->unit.', Year: '.$y->year}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -69,6 +88,32 @@
                         <label class="col-md-3 control-label">Slug</label>
                         <div class="col-md-4">
                             <input type="text" name="slug" class="form-control" placeholder="Enter Slug" value="{{old('slug')}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Suggestion</label>
+                        <div class="col-md-4">
+                            <p class="help-block">"On" is for our suggestion</p>
+                            <div class="icheck-inline">
+                                <input type="checkbox" name="owns" class="make-switch" data-on-color="info" value="1" data-off-color="success"
+                                       @if(old('owns') == '1')
+                                       checked
+                                        @endif
+                                >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Payable</label>
+                        <div class="col-md-4">
+                            <p class="help-block">"On" is for final exam</p>
+                            <div class="icheck-inline">
+                                <input type="checkbox" name="is_final" class="make-switch" data-on-color="info" value="1" data-off-color="success"
+                                       @if(old('is_final') == '1')
+                                       checked
+                                        @endif
+                                >
+                            </div>
                         </div>
                     </div>
                 </div>

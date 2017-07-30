@@ -47,6 +47,10 @@
                     <th> Subject </th>
                     <th> Category </th>
                     <th> Slug </th>
+                    <th> Class </th>
+                    <th> Final </th>
+                    <th> Year </th>
+                    <th> Suggestion </th>
                     <th> Actions </th>
                 </tr>
                 </thead>
@@ -56,9 +60,15 @@
                         <tr>
                             <td>{{$i++}}</td>
                             <td> {{$exam->name}}</td>
-                            <td> {{$exam->subject}}</td>
+                            <td> {{$exam->subject?$exam->subjects($exam->subject)->name:'None Given'}}</td>
                             <td> {{$exam->category($exam->category_id)->name}}</td>
                             <td> {{$exam->slug}}</td>
+                            <td> {{ $exam->class_id?$exam->UserClass($exam->class_id)->name:'None Given' }}</td>
+                            <td> {{$exam->is_final?'Yes':'No'}}</td>
+                            <td>
+                                {!! $exam->year_id?'Year: '.$exam->year->year.'<br> '.$exam->year->university.'<br>Unit: '.$exam->year->unit:'No'!!}
+                            </td>
+                            <td> {{$exam->owns?'Our':'UV ques..'}}</td>
                             <td>
                                 <div class="btn-group">
                                     <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
@@ -75,7 +85,7 @@
                                         </li>
 
                                         <li>
-                                            <a href="javascript:;" class="row-delete" id="">
+                                            <a href="javascript:;" class="row-delete" id="{{$exam->id}}">
                                                 <i class="glyphicon glyphicon-remove"></i> Delete </a>
                                         </li>
                                     </ul>
@@ -100,14 +110,16 @@
     <script type="text/javascript">
 
         $('.row-delete').click(function () {
-            var id = $(this).attr('id')
+            var id = $(this).attr('id');
+            var a = "{{url('admin/exams')}}/"+id;
+            console.log(a)
 
             swal({
                     title: "Do you want to delete this entry?",
                     text: "Are you sure?",
                     type: "info",
                     showCancelButton: true,
-                    closeOnConfirm: false,
+                    closeOnConfirm: true,
                     showLoaderOnConfirm: true, },
                 function(){
                     setTimeout(function(){
@@ -119,7 +131,7 @@
         function ajax_delete(id){
             $.ajax({
                 method: 'DELETE',
-                url   : "{{url('admin/users')}}/"+id,
+                url   : "{{url('admin/exams')}}/"+id,
                 data  : {
                     _token : "{{csrf_token()}}"
                 },
@@ -131,6 +143,9 @@
                     }else{
                         swal("Cancelled", "Please try again.", "error");
                     }
+                },
+                error: function () {
+                    location.reload();
                 }
             })
         }

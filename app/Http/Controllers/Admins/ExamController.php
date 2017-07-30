@@ -6,6 +6,10 @@ use App\Models\AnswerOption;
 use App\Models\Exam;
 use App\Models\ExamCategory;
 use App\Models\ExamQuestion;
+use App\Models\ExamRanking;
+use App\Models\Subject;
+use App\Models\UserClass;
+use App\Models\YearWiseExam;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -17,22 +21,38 @@ class ExamController extends Controller
     }
     public function index()
     {
-        $exams = Exam::all();
+        $exams = Exam::orderBy('id','desc')->get();
         return view('admin.exam.index',compact('exams'));
     }
     public function create()
     {
         $categories = ExamCategory::all();
-        return view('admin.exam.create',compact('categories'));
+        $subjects = Subject::all();
+        $years = YearWiseExam::all();
+        return view('admin.exam.create',compact('categories','subjects','years'));
     }
     public function store(Request $request)
     {
         $this->validate($request,[
             'name' => 'required',
-            'subject' => 'required',
             'category' => 'required',
         ]);
-        $exam = Exam::create(['name'=>$request->name,'subject'=>$request->subject,'category_id'=>$request->category,'slug'=>$request->slug]);
+        $is_final = isset($request->is_final)?1:0;
+        $owns = isset($request->owns)?1:0;
+        $is_final = $request->category==4?1:$is_final;
+        $year = $request->year?$request->year:0;
+        $subject = Subject::where('id',$request->subject)->firstOrFail();
+        $exam = Exam::create(
+            [
+                'name'=>$request->name,
+                'subject'=>$request->subject,
+                'category_id'=>$request->category,
+                'slug'=>$request->slug,
+                'class_id'=>$subject->class,
+                'owns'=>$owns,
+                'is_final'=>$is_final,
+                'year_id'=>$year
+            ]);
 
         return $this->index();
     }
@@ -40,21 +60,31 @@ class ExamController extends Controller
     {
         $categories = ExamCategory::all();
         $exam = Exam::where('id',$id)->firstOrFail();
-        return view('admin.exam.edit',compact(['categories','exam']));
+        $subjects = Subject::all();
+        $years = YearWiseExam::all();
+        return view('admin.exam.edit',compact('categories','subjects','years','exam'));
     }
     public function update(Request $request,$id)
     {
         $this->validate($request,[
             'name' => 'required',
-            'subject' => 'required',
             'category' => 'required',
         ]);
+        $is_final = isset($request->is_final)?1:0;
+        $owns = isset($request->owns)?1:0;
+        $is_final = $request->category==4?1:$is_final;
+        $year = $request->year?$request->year:0;
+        $subject = Subject::where('id',$request->subject)->firstOrFail();
         $exam = Exam::where('id',$id)->firstOrFail();
 
         $exam->name = $request->name;
         $exam->subject = $request->subject;
         $exam->category_id = $request->category;
         $exam->slug = $request->slug;
+        $exam->class_id = $subject->class;
+        $exam->owns = $owns;
+        $exam->is_final = $is_final;
+        $exam->year_id = $year;
 
         $exam->save();
 
@@ -91,6 +121,13 @@ class ExamController extends Controller
 
         }
 
+        return back();
+    }
+    public function destroy($id)
+    {
+        Exam::where('id',$id)->delete();
+        ExamQuestion::where('exam_id',$id)->delete();
+        ExamRanking::where('exam_id',$id)->delete();
         return back();
     }
 }

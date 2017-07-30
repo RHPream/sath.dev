@@ -25,7 +25,7 @@
 @endsection
 
 @section('title')
-    <h1 class="page-title"> Routines
+    <h1 class="page-title"> Routines for class {{$class}}
         <small>Recent Routines</small>
     </h1>
 @endsection
@@ -42,21 +42,27 @@
             <table class="table table-striped table-bordered table-hover" id="sample_2">
                 <thead>
                 <tr>
-                    <th> # </th>
-                    <th> Class </th>
-                    <th> Subject </th>
-                    <th> Description </th>
+                    <th> # Week </th>
+                    <th> 1st Day </th>
+                    <th> 2nd Day </th>
+                    <th> 3rd Day </th>
+                    <th> 4th Day </th>
+                    <th> 5th Day </th>
+                    <th> 6th Day </th>
                     <th> Actions </th>
                 </tr>
                 </thead>
                 <tbody>
                 <?php $i = 1; ?>
-                @foreach($routines as $routine)
+                @foreach($routines as $r)
                     <tr>
-                        <td>{{$i++}}</td>
-                        <td> {{$routine->subject->class}}</td>
-                        <td> {{$routine->subject->name}}</td>
-                        <td> {{$routine->description}}</td>
+                        <td><?php if($i==1){$o = $i.'<sup>st</sup>';} elseif($i==2){$o = $i.'<sup>nd</sup>';}elseif($i==3){$o = $i.'<sup>rd</sup>';} else{$o = $i.'<sup>th</sup>';} echo $o;?> Week</td>
+                        <td> {{$r->one}}</td>
+                        <td> {{$r->two}}</td>
+                        <td> {{$r->three}}</td>
+                        <td> {{$r->four}}</td>
+                        <td> {{$r->five}}</td>
+                        <td> {{$r->six}}</td>
                         <td>
                             <div class="btn-group">
                                 <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
@@ -64,11 +70,11 @@
                                 </button>
                                 <ul class="dropdown-menu pull-left" role="menu">
                                     <li>
-                                        <a href="{{url('admin/routine').'/'.$routine->id.'/edit'}}">
+                                        <a href="{{url('admin/routine').'/'.$r->id.'/edit'}}">
                                             <i class="glyphicon glyphicon-edit"></i> Edit </a>
                                     </li>
                                     <li>
-                                        <a href="javascript:;" class="row-delete" id="{{$routine->id}}">
+                                        <a href="javascript:;" class="row-delete" id="{{$r->id}}">
                                             <i class="glyphicon glyphicon-remove"></i> Delete </a>
                                     </li>
                                 </ul>

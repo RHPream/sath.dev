@@ -2,10 +2,16 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Mail\ConfirmationMail;
+use App\Models\UserProfile;
 use App\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -63,11 +69,36 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user =  User::create([
             'name' => $data['name'],
             'phone' => $data['phone'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+        UserProfile::create([
+            'user_id' => $user->id,
+            'balance' => 0,
+            'last_payment_amount' => 0,
+            'last_payment_date'  => '0000-00-00'
+        ]);
+        return $user;
+    }
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        Mail::to($user->email)->send(new ConfirmationMail($user));
+
+        return back()->with('status','Please confirm your email address to sign in.');
+    }
+    public function confirmUser($token)
+    {
+        $user = User::where('verification_token',$token)->firstOrFail();
+        $user->verified = true;
+        $user->save();
+
+        Auth::login($user);
     }
 }

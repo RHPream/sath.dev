@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admins;
 
 use App\Models\Routine;
 use App\Models\Subject;
+use App\Models\UserClass;
+use App\Models\UserRoutine;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -16,8 +18,8 @@ class RoutineController extends Controller
      */
     public function index()
     {
-        $routines = Routine::all();
-        return view('admin.routine.index',compact('routines'));
+        $classes = UserClass::all();
+        return view('admin.routine.classwise',compact('classes'));
     }
 
     /**
@@ -29,6 +31,12 @@ class RoutineController extends Controller
     {
         $subjects = Subject::all();
         return view('admin.routine.create',compact('subjects'));
+    }
+    public function classWise($id)
+    {
+        $routines = UserRoutine::where('class_id',$id)->get();
+        $class = UserClass::where('id',$id)->firstOrFail()->name;
+        return view('admin.routine.index',compact('routines','class'));
     }
 
     /**
