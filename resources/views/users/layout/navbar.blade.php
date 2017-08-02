@@ -31,8 +31,23 @@
                     <span class="badge badge-success"></span>
                 </a>                                
             </li>
+            <li class="nav-item start">
+            	<a href="{{url('/')}}" class="nav-link ">
+                    <i class="icon-home"></i>
+                    <span class="title">Home</span>
+                    <span class="selected"></span>
+                    <span class="badge badge-success"></span>
+                </a>
+            </li>
             <li class="heading">
                 <h3 class="uppercase">Features</h3>
+            </li>
+
+            <li class="nav-item  ">
+                <a href="{{url('preparation')}}" class="nav-link ">
+                    <i class="icon-layers"></i>
+                    <span class="title">Preparation</span>
+                </a>
             </li>
             <li class="nav-item  ">
                 <a href="javascript:;" class="nav-link nav-toggle">

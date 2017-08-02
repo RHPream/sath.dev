@@ -19,4 +19,18 @@ class ExamRanking extends Model
     {
         return ExamCategory::where('id',$id)->first()->name;
     }
+    public function position($exam)
+    {
+        $ranginks = ExamRanking::where('exam_id',$exam)->orderBy('id','asc')->get();
+        $count = 0;
+        foreach ($ranginks as $r)
+        {
+            $count++;
+            if($r->id == $this->id){
+                break;
+            };
+        }
+
+        return $count;
+    }
 }

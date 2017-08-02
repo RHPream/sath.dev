@@ -53,7 +53,7 @@
                     <div class="form-group">
                         <label class="col-md-1 control-label">Message</label>
                         <div class="col-md-9">
-                            <textarea name="message" class="form-control" id="description" cols="30" rows="10">{{old('message')?old('message'):$message->message}}</textarea>
+                            <input type="text" name="message" class="form-control" placeholder="Enter message" value="{{old('message')?old('message'):$message->message}}">
                         </div>
                     </div>
                 </div>

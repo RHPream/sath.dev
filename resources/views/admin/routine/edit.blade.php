@@ -43,21 +43,53 @@
                 {{csrf_field()}}
                 {{method_field('PATCH')}}
                 <div class="form-body">
-                    <div class="form-group">
-                        <label class="col-md-1 control-label">Subject</label>
-                        <div class="col-md-9">
-                            <select name="subject_id" class="form-control">
-                                <option value="">Please select Subject</option>
-                                @foreach($subjects as $subject)
-                                    <option value="{{$subject->id}}">{{$subject->name.' ( class - '.$subject->class.' )'}}</option>
-                                @endforeach
-                            </select>
+                    <input type="hidden" name="class_id" value="{{$routine->class_id}}">
+                    <div class="form-body">
+                        <div class="form-group">
+                            <label class="col-md-1 control-label">Day 1</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="one" value="{{$routine->one}}" placeholder="Please enter routine">
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-md-1 control-label">Description</label>
-                        <div class="col-md-9">
-                            <input type="text" name="description" class="form-control" placeholder="Enter description" value="{{old('description')?old('description'):$routine->description}}">
+                    <div class="form-body">
+                        <div class="form-group">
+                            <label class="col-md-1 control-label">Day 2</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="two" value="{{$routine->two}}" placeholder="Please enter routine">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-body">
+                        <div class="form-group">
+                            <label class="col-md-1 control-label">Day 3</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="three" value="{{$routine->three}}" placeholder="Please enter routine">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-body">
+                        <div class="form-group">
+                            <label class="col-md-1 control-label">Day 4</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="four" value="{{$routine->four}}" placeholder="Please enter routine">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-body">
+                        <div class="form-group">
+                            <label class="col-md-1 control-label">Day 5</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="five" value="{{$routine->five}}" placeholder="Please enter routine">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-body">
+                        <div class="form-group">
+                            <label class="col-md-1 control-label">Day 6</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="six" value="{{$routine->six}}" placeholder="Please enter routine">
+                            </div>
                         </div>
                     </div>
                 </div>

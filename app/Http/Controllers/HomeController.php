@@ -31,11 +31,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $dropdowns = Footer::where('parent_name',0)->get();
-        $subjects = Subject::all();
+        $class_id = Auth::user()->userProfile->class_id;
+        $subjects = Subject::where('class',$class_id)->get();
         $classes = UserClass::all();
         $exams = ExamRanking::where('user_id',Auth::user()->id)->orderBy('id','desc')->get();
-        return view('users.dashboard',compact('dropdowns','subjects','exams','classes'));
+        return view('users.dashboard',compact('subjects','exams','classes'));
     }
     public function userUpdate(Request $request)
     {

@@ -18,7 +18,7 @@
     <div class="page-toolbar">
         <div class="form-actions">
             <div class="btn-set pull-left">
-                <a href="{{url('admin/routine/create')}}" class="btn btn-primary">Add routine</a>
+                <a href="{{url('admin/routine/create').'/'.$id}}" class="btn btn-primary">Add routine</a>
             </div>
         </div>
     </div>

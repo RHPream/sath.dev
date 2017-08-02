@@ -42,22 +42,52 @@
             <!-- BEGIN FORM-->
             <form method="POST" id="users_add" action="{{route('routine.store')}}" class="form-horizontal">
                 {{csrf_field()}}
+                <input type="hidden" name="class_id" value="{{$id}}">
                 <div class="form-body">
                     <div class="form-group">
-                        <label class="col-md-1 control-label">Subject</label>
+                        <label class="col-md-1 control-label">Day 1</label>
                         <div class="col-md-9">
-                            <select name="subject_id" class="form-control">
-                                <option value="">Please select Subject</option>
-                                @foreach($subjects as $subject)
-                                <option value="{{$subject->id}}">{{$subject->name.' ( class - '.$subject->class.' )'}}</option>
-                                @endforeach
-                            </select>
+                            <input type="text" class="form-control" name="one" value="{{old('one')}}" placeholder="Please enter routine">
                         </div>
                     </div>
+                </div>
+                <div class="form-body">
                     <div class="form-group">
-                        <label class="col-md-1 control-label">Description</label>
+                        <label class="col-md-1 control-label">Day 2</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="description" value="{{old('class')}}" placeholder="Please enter description">
+                            <input type="text" class="form-control" name="two" value="{{old('two')}}" placeholder="Please enter routine">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-body">
+                    <div class="form-group">
+                        <label class="col-md-1 control-label">Day 3</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="three" value="{{old('three')}}" placeholder="Please enter routine">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-body">
+                    <div class="form-group">
+                        <label class="col-md-1 control-label">Day 4</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="four" value="{{old('four')}}" placeholder="Please enter routine">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-body">
+                    <div class="form-group">
+                        <label class="col-md-1 control-label">Day 5</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="five" value="{{old('five')}}" placeholder="Please enter routine">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-body">
+                    <div class="form-group">
+                        <label class="col-md-1 control-label">Day 6</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="six" value="{{old('six')}}" placeholder="Please enter routine">
                         </div>
                     </div>
                 </div>

@@ -156,10 +156,17 @@
                         <thead>
                         <tr>
                             <th> # </th>
-                            <th> Exam </th>
-                            <th> Subject </th>
-                            <th> Category </th>
-                            <th> Marks </th>
+                            <?php
+                                $i = 0;
+                                $ar = [];
+                            ?>
+                            @foreach($subjects as $subject)
+                            <th> {{$subject->name}} </th>
+                                <?php
+                                    $ar[$i] = $subject->id;
+                                    $i++;
+                                ?>
+                            @endforeach
                         </tr>
                         </thead>
                         <tbody>
@@ -167,10 +174,17 @@
                         @foreach($exams as $exam)
                             <tr>
                                 <td>{{$i++}}</td>
-                                <td> {{$exam->exam->name}}</td>
-                                <td> {{$exam->exam->subject}}</td>
-                                <td> {{$exam->category($exam->exam->category_id)}} wise</td>
-                                <td> {{$exam->marks}}</td>
+                                @for($ij=0;$ij<count($ar);$ij++)
+                                    @if($exam->exam->subject==$ar[$ij])
+                                        <td>
+                                            Name: {{$exam->exam->name}},<br>
+                                            Mark: {{$exam->marks}},<br>
+                                            Position: {{$exam->position($exam->exam_id)}}
+                                        </td>
+                                    @else
+                                        <td></td>
+                                    @endif
+                                @endfor
                             </tr>
                         @endforeach
                         </tbody>

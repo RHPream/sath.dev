@@ -36,6 +36,7 @@ class User extends Authenticatable
         parent::boot();
         static::creating(function ($user){
             $user->verification_token = str_random(40);
+
         });
     }
 }

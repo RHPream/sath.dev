@@ -25,25 +25,45 @@
         .card{
             margin-bottom: 20px;
         }
+        .des > li{
+            padding-left: 0.5rem;
+            color: #094166;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
 
 <!-- Header -->
 <header id="header" class="alt">
-    <div class="logo"><a href="{{url('/')}}">Easy <span>School</span></a></div>
+    <div class="logo">
+        <a href="{{url('/')}}">Easy <span>School</span></a>
+    </div>
     <a href="#menu">Menu</a>
 </header>
-
+<div class="logo-image" style="position: fixed;top: 60px;left: 15px;z-index: 10000;">
+    <img src="{{url('images')}}/Logo 3.jpg" alt="Logo" style="width: 50%;height: 50%;">
+</div>
 <!-- Nav -->
 <nav id="menu">
     <ul class="links">
         <li><a href="{{url('/')}}">Home</a></li>
-        <li><a href="{{url('/')}}">Consultation</a></li>
-        <li><a href="{{url('/')}}">Steps to Prepear</a></li>
-        <li><a href="{{url('/')}}">Textbook</a></li>
-        <li><a href="{{url('register')}}">Register</a></li>
-        <li><a href="{{url('login')}}">Login</a></li>
+        <li><a href="{{url('/home')}}">Dashboard</a></li>
+        @if (Auth::guest())
+        <li><a href="{{url('login')}}">Login / Register</a></li>
+        @else
+            <li>
+                <a href="{{ route('logout') }}"
+                   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                    Logout
+                </a>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    {{ csrf_field() }}
+                </form>
+            </li>
+        @endif
         <!--<li><a href="generic.html">Register</a></li>-->
         <!--<li><a href="elements.html">Login</a></li>-->
     </ul>
@@ -51,44 +71,124 @@
 
 <!-- Banner -->
 <section class="banner full">
-    <article>
-        <img src="images/slide02.jpg" alt=""/>
-        <div class="inner">
-            <header>
-                <p>A Best Medium To Reach Your Destination</p>
-                <h3>Message From CEO</h3>
-                <strong>Advice that can help you</strong>
-            </header>
+    <?php $i=1; ?>
+    @foreach($messages as $message)
+        <article>
+            <img src="images/slide0<?php echo $i; $i++; ?>.jpg" alt=""/>
+            <?php if($i>5){$i=1;}?>
+            <div class="inner">
+                <header>
+                    <p>A Best Medium To Reach Your Destination</p>
+                    <h3 style="margin-top: 5px;">Message From CEO</h3>
+                    <div class="message" style="min-height: 100px;width: 70%;margin: 0 auto;">
+                        <strong>{{$message->subject}}:</strong>
+                        <span>{!! $message->message !!}</span>
+                    </div>
+                </header>
+            </div>
+        </article>
+    @endforeach
+</section>
+<section class="wrapper style2">
+    <div class="inner">
+        <div class="grid-style">
+            <div class="box" style="width: 100%;min-height: 300px;margin-bottom: -100px;">
+                <div class="content">
+                    <header class="align-center">
+                        <p></p>
+                        <h2 style="color: #175E40;font-weight: bold;">Facilities we provide</h2>
+                    </header>
+                        <div class="row">
+                            <div class="col-sm-6 col-md-3 text-center" style="min-height: 200px;">
+                                <h4 style="font-size: 17px;color: #0C374E;margin-bottom: 10px;">Universities &amp; Question Bank</h4>
+                                <ul class="links des">
+                                    <li>Provide you unlimited guideline</li>
+                                </ul>
+                            </div>
+                            <div class="col-sm-6 col-md-3 text-center" style="min-height: 200px;">
+                                <h4 style="font-size: 17px;color: #0C374E;margin-bottom: 10px;">Lecture</h4>
+                                <ul class="links des">
+                                    <li>Topic wise lecture sheet</li>
+                                    <li>Topic wise video lecture</li>
+                                </ul>
+                            </div>
+                            <div class="col-sm-6 col-md-3 text-center" style="min-height: 200px;">
+                                <h4 style="font-size: 17px;color: #0C374E;margin-bottom: 10px;">Model Test</h4>
+                                <ul class="links des">
+                                    <li>Chapter wise</li>
+                                    <li>Subject wise</li>
+                                    <li>University question wise</li>
+                                    <li>Our suggestion wise</li>
+                                    <li>Final model test</li>
+                                </ul>
+                            </div>
+                            <div class="col-sm-6 col-md-3 text-center" style="min-height: 200px;">
+                                <h4 style="font-size: 17px;color: #0C374E;margin-bottom: 10px;">Result</h4>
+                                <ul class="links des">
+                                    <li>Instantly you can see model test result and merit list.</li>
+                                    <li>You can see your preparation status.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        {{--<ul class="links des">--}}
+                            {{--<li>Chapter wise lectures</li>--}}
+                            {{--<li>Rich video lecture</li>--}}
+                            {{--<li>Lecture wise exam</li>--}}
+                            {{--<li>Subject wise exam</li>--}}
+                            {{--<li>Year wise exam</li>--}}
+                            {{--<li>Rich suggestion wise exam</li>--}}
+                            {{--<li>Final exam</li>--}}
+                            {{--<li>Best time distribution</li>--}}
+                        {{--</ul>--}}
+                    <a href="{{url('login')}}" class="button special">Get Started</a>
+                </div>
+            </div>
         </div>
-    </article>
-    <article>
-        <img src="images/slide01.jpg" alt="" />
-        <div class="inner">
-            <header>
-                <p>A Best Medium To Reach Your Destination</p>
-                <h3>Message From CEO</h3>
-                <strong>Advice that can help you</strong>
-            </header>
-        </div>
-    </article>
+    </div>
 </section>
 
+<section class="wrapper style2">
+    <div class="inner">
+        <div class="grid-style">
+            <div class="box" style="width: 100%;min-height: 300px;margin-bottom: -100px;">
+                <div class="content">
+                    <div class="image fit home-video">
+                        {!! $video !!}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 <!-- One -->
 <section id="one" class="wrapper style2">
     <div class="inner">
         <div class="grid-style">
-
             <div>
                 <div class="box">
-                    <div class="image fit home-video">
-                        <!--<img src="images/pic02.jpg" alt="" />-->
-                        <iframe width="100%" height="310" src="https://www.youtube.com/embed/5AnyFRpwCK0"
-                                frameborder="0" allowfullscreen></iframe>
-                    </div>
                     <div class="content">
                         <header class="align-center">
-                            <p>Your Career Our Responsibility</p>
+                            <p>Ranking of Final Exam</p>
                             <h2>Easy School</h2>
+                            <div class="ranking" style="width: 30%;margin-right: 3%;float: left;">
+                                <h3>First</h3>
+                                <img src="images/ceo-avatar.png" style="height: 100px;width: 100px;border-radius: 50px;margin: 10px auto;" alt="">
+                                <h4 style="margin-bottom: 0px;">Name of User</h4>
+                                <span style="margin-top: -10px;">Email of user</span>
+                            </div>
+                            <div class="ranking" style="width: 30%;margin-right: 3%;float: left;">
+                                <h3>Two</h3>
+                                <img src="images/ceo-avatar.png" style="height: 100px;width: 100px;border-radius: 50px;margin: 10px auto;" alt="">
+                                <h4 style="margin-bottom: 0px;">Name of User</h4>
+                                <span style="margin-top: -10px;">Email of user</span>
+                            </div>
+                            <div class="ranking" style="width: 30%;margin-right: 3%;float: left;">
+                                <h3>Three</h3>
+                                <img src="images/ceo-avatar.png" style="height: 100px;width: 100px;border-radius: 50px;margin: 10px auto;" alt="">
+                                <h4 style="margin-bottom: 0px;">Name of User</h4>
+                                <span style="margin-top: -10px;">Email of user</span>
+                            </div>
+                            <h1 style="clear: both;margin-bottom: 20px;"></h1>
                         </header>
                     </div>
                 </div>
@@ -96,17 +196,17 @@
 
             <div>
                 <div class="box">
-                    <div class="image fit">
-                        <img src="images/slide01.jpg" alt="" style="height: 310px;"/>
-                    </div>
+                    {{--<div class="image fit">--}}
+                        {{--<img src="images/slide01.jpg" alt="" style="height: 310px;"/>--}}
+                    {{--</div>--}}
                     <div class="content">
                         <header class="align-center">
                             <p>Our honorable CEO</p>
-                            <img src="images/pic01.jpg" style="height: 100px;width: 100px;border-radius: 50px;margin: 10px auto;" alt="">
-                            <h2>Md. Reazul Islam(Reaz)</h2>
-                            <span style="margin-top: -10px;">Designation</span>
+                            <img src="images/{{$info->ceo_image}}" style="height: 150px;width: 150px;border-radius: 75px;margin: 10px auto;" alt="">
+                            <h2 style="margin-bottom: 0px;">Md. Reazul Islam(Reaz)</h2>
+                            <span style="margin-top: -10px;">Lecturer, Department of CSE(DIU)</span>
                         </header>
-                        <p>Description of CEO</p>
+                        <p style="color: #000040;">{!!  $info->ceo_description !!}</p>
                     </div>
                 </div>
             </div>
@@ -248,7 +348,8 @@
 </section>
 <section id="five" class="wrapper style2">
     <div class="inner">
-        <form method="post" action="#">
+        <form method="post" action="{{url('contact-us')}}">
+            {{csrf_field()}}
             <div class="row uniform">
                 <div class="6u 12u$(xsmall)">
                     <input type="text" name="name" id="name" value="" placeholder="Name" />

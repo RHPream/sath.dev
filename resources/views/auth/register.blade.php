@@ -1,126 +1,112 @@
-{{--
-@extends('layouts.app')
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Easy School</title>
+    <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 
-@section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
-                        {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Name</label>
+    <link rel="stylesheet" href="{{url('')}}/css/styleLogin.css">
 
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
 
-                                @if ($errors->has('name'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+</head>
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+<body>
+<div class="form">
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+    <ul class="tab-group">
+        <li class="tab active"><a href="#signup">Sign Up</a></li>
+        <li class="tab"><a href="#login">Log In</a></li>
+    </ul>
 
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+    <div class="tab-content">
+        <div id="signup">
+            <h1>Sign Up for Free</h1>
+            @if(session('status'))
+                <h2 style="color: green">{{session('status')}}</h2>
+            @endif
 
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
+            <form method="POST" action="{{ route('register') }}">
+                {{csrf_field()}}
+                <div class="field-wrap">
+                    <label>Name<span class="req">*</span></label>
+                    <input type="text" name="name" required autocomplete="off" />
+                </div>
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
+                <div class="field-wrap">
+                    <label>
+                        Email Address<span class="req">*</span>
+                    </label>
+                    <input type="email" name="email" required autocomplete="off"/>
+                </div>
 
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
+                <div class="field-wrap">
+                    <label>
+                        Phone Number<span class="req">*</span>
+                    </label>
+                    <input type="text" name="phone" autocomplete="off"/>
+                </div>
+
+                <div class="field-wrap">
+                    <label>
+                        Password<span class="req">*</span>
+                    </label>
+                    <input type="password" name="password" required autocomplete="off"/>
+                </div>
+
+                <div class="field-wrap">
+                    <label>
+                        Confirm Password<span class="req">*</span>
+                    </label>
+                    <input type="password" name="password_confirmation" required autocomplete="off"/>
+                </div>
+                <input type="submit" class="button button-block" value="Register">
+
+            </form>
+
+        </div>
+        <div id="login">
+            <h1>Welcome Back!</h1>
+
+            <form method="POST" action="{{ route('login') }}">
+                {{ csrf_field() }}
+
+                <div class="field-wrap">
+                    @if ($errors->has('email'))
+                        <span class="help-block"><strong>{{ $errors->first('email') }}</strong></span>
+                    @endif
+                    <label>
+                        Email Address<span class="req">*</span>
+                    </label>
+                    <input type="email" name="email" value="{{ old('email') }}" required autofocus autocomplete="off"/>
+                </div>
+
+                <div class="field-wrap">
+                    @if ($errors->has('password'))
+                        <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Register
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                    @endif
+                    <label>
+                        Password<span class="req">*</span>
+                    </label>
+                    <input type="password" name="password" required autocomplete="off"/>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
---}}
-@extends('layouts.guestLayout')
 
-@section('slider')
-    <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
-    {{ csrf_field() }}
-    <!--Form with header-->
-     <div>
-        <div>
+                <p class="forgot"><a href="{{ route('password.request') }}">Forgot Password?</a></p>
 
-            <!--Header-->
-            <div class="form-header-blue-gradient">
-                <h3><i class="fa fa-user-o auth-icon"></i> Register:</h3>
-            </div>
+                <button class="button button-block"/>Log In</button>
 
-            <!--Body-->
-            <div class="md-form">
-                <i class="fa fa-user prefix"></i>
-                <input type="text" id="form3" name="name" style="width: 80%;margin-left: 10%;" class="form-control" placeholder="Name">
-            </div>
-            <div class="md-form">
-                <i class="fa fa-envelope prefix"></i>
-                <input type="text" id="form2" name="email" style="width: 80%;margin-left: 10%;" class="form-control" placeholder="Email">
-            </div>
-            <div class="md-form">
-                <i class="fa fa-phone prefix"></i>
-                <input type="text" id="form2" required style="width: 80%;margin-left: 10%;" name="phone" class="form-control" placeholder="Phone number">
-            </div>
-
-            <div class="md-form">
-                <i class="fa fa-lock prefix"></i>
-                <input type="password" id="form4" name="password" style="width: 80%;margin-left: 10%;" class="form-control" placeholder="Password">
-            </div>
-            <div class="md-form">
-                <i class="fa fa-unlock prefix"></i>
-                <input type="password" id="form5" name="password_confirmation" style="width: 80%;margin-left: 10%;" class="form-control" placeholder="Confirmation Password">
-            </div>
-
-            <div class="text-center">
-                <input type="submit" class="btn btn-indigo" value="Sign up">
-                {{--<button class="btn btn-indigo">Sign up</button>--}}
-                <hr>
-            </div>
+            </form>
 
         </div>
-    </div>
-    <!--/Form with header-->
-    </form>
-@endsection
+    </div><!-- tab-content -->
+
+</div> <!-- /form -->
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+<script src="{{url('')}}/js/indexLogin.js"></script>
+
+</body>
+</html>

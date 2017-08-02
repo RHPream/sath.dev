@@ -27,16 +27,16 @@ class RoutineController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        $subjects = Subject::all();
-        return view('admin.routine.create',compact('subjects'));
+        $classes = UserClass::where('id',$id);
+        return view('admin.routine.create',compact('classes','id'));
     }
     public function classWise($id)
     {
         $routines = UserRoutine::where('class_id',$id)->get();
         $class = UserClass::where('id',$id)->firstOrFail()->name;
-        return view('admin.routine.index',compact('routines','class'));
+        return view('admin.routine.index',compact('routines','class','id'));
     }
 
     /**
@@ -47,13 +47,18 @@ class RoutineController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'subject_id'=>'required',
-            'description'=>'required',
-        ]);
-        $subject = Routine::create(['subject_id'=>$request->subject_id,'description'=>$request->description]);
+        $data = [
+            'class_id' => $request->class_id,
+            'one' => $request->one,
+            'two' => $request->two,
+            'three' => $request->three,
+            'four' => $request->four,
+            'five' => $request->five,
+            'six' => $request->six,
+        ];
+        UserRoutine::create($data);
 
-        return $this->index();
+        return $this->classWise($request->class_id);
     }
 
     /**
@@ -75,9 +80,8 @@ class RoutineController extends Controller
      */
     public function edit($id)
     {
-        $subjects = Subject::all();
-        $routine = Routine::find($id);
-        return view('admin.routine.edit',compact('routine','subjects'));
+        $routine = UserRoutine::where('id',$id)->firstOrFail();
+        return view('admin.routine.edit',compact('routine'));
     }
 
     /**
@@ -89,17 +93,18 @@ class RoutineController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,[
-            'subject_id'=>'required',
-            'description'=>'required',
-        ]);
         $data = [
-            'subject_id'=>$request->subject_id,
-            'description'=>$request->description,
+            'class_id' => $request->class_id,
+            'one' => $request->one,
+            'two' => $request->two,
+            'three' => $request->three,
+            'four' => $request->four,
+            'five' => $request->five,
+            'six' => $request->six,
         ];
-        $subject = Routine::where('id',$id)->first();
-        $subject->update($data);
-        return $this->index();
+        $routine = UserRoutine::where('id',$id)->firstOrFail();
+        $routine->update($data);
+        return $this->classWise($id);
     }
 
     /**
@@ -112,5 +117,8 @@ class RoutineController extends Controller
     {
         Routine::where('id',$id)->delete();
         return back();
+    }
+    public function lecture(){
+
     }
 }
